@@ -1,4 +1,6 @@
 class SchoolsController < ApplicationController
+    before_action :set_school, :only => [ :show, :edit, :update, :destroy]
+
     def index
         @schools = School.all
     end
@@ -9,30 +11,44 @@ class SchoolsController < ApplicationController
 
     def create
         @school = School.new(school_params)
-        @school.save
-
-        redirect_to :action => :index
+        if @school.save
+            flash[:notice] = "school was successfully created"
+            redirect_to :action => :index
+        else
+            render :action => :new
+        end
     end
 
     def show
-        @school = School.find(params[:id])
+        @page_title = @school.name
     end
 
     def edit
-        @school = School.find(params[:id])
     end
 
     def update
-        @school = Event.find(params[:id])
-        @school.update(school_params)
+        if @school.update(school_params)
+            flash[:notice] = "school was successfully updated"
+            redirect_to :action => :show, :id => @school
+        else
+            render :action => :edit
+        end
+    end
 
-        redirect_to :action => :show, :id => @school
+    def destroy
+        @school.destroy
+        flash[:alert] = "school was successfully deleted"
+        redirect_to :action => :index
     end
 
     private
 
     def school_params
         params.require(:school).permit(:name, :description)
+    end
+
+    def set_school
+        @school = School.find(params[:id])
     end
 
 end
