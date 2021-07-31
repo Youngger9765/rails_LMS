@@ -57,3 +57,20 @@ School.all.each do |school|
 	end
 end
 
+# Teacher / classroom ships
+Classroom.all.each do |classroom|
+	staffs = classroom.school.school_staffs.limit(2)
+	staffs.each do |staff|
+		teacher = Teacher.new(
+			:name => staff.name,
+			:user_id => staff.user_id			
+		)
+		teacher.save!
+
+		ClassroomTeacherShip.create(
+			teacher_id: teacher.id,
+			classroom_id: classroom.id
+		)
+	end
+end
+
