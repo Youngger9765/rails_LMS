@@ -1,0 +1,2 @@
+class SchoolStaff < ApplicationRecord
+end
