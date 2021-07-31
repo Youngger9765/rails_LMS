@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # User
-print("User seed is creating")
+puts("User seed is creating")
 50.times do
   user=User.new(
     # name: Faker::Internet.user_name,
@@ -18,7 +18,7 @@ print("User seed is creating")
 end
 
 # School
-print("School seed is creating")
+puts("School seed is creating")
 6.times do
   school=School.new(
     name: Faker::Team.name,
