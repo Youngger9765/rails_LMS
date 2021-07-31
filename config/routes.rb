@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :schools do
     resources :school_staffs, :controller => 'school_school_staffs'
-    resources :classrooms, :controller => 'school_classrooms'
+    resources :classrooms, :controller => 'school_classrooms' do
+      resources :teachers, :controller => 'classroom_teachers'
+    end
   end
 
 

@@ -1,0 +1,4 @@
+<%= form_for @teacher, :url => school_classroom_teachers_path(@school, @classroom) do |f| %>
+   <%= f.text_field :name %>
+   <%= f.submit %>
+<% end %>
