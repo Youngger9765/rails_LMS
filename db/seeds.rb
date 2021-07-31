@@ -41,4 +41,19 @@ School.all.each do |school|
 	end
 end
 
+# Classroom
+puts("Classroom seed is creating")
+School.all.each do |school|
+	rand(8).times do
+		school.classrooms.create(
+			name: Faker::Team.name,
+			description: Faker::Team.sport,
+			is_public: [true, false].sample,
+			city: ["台北","新北","高雄"].sample,
+			school_name: school.name,
+			school_type: ["國小","國中","高中"].sample,
+			grade: (1..12).to_a.sample,
+		)
+	end
+end
 
