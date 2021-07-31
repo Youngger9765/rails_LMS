@@ -1,0 +1,11 @@
+<ul>
+<% @schools.each do |school| %>
+  <li>
+ 	  <%= school.name %>
+  <%= link_to 'Show', :controller => 'schools', :action => 'show', :id => school %>
+  <%= link_to 'Edit', :controller => 'schools', :action => 'edit', :id => school %>
+  <%= link_to 'Delete', :controller => 'schools', :action => 'destroy', :id => school %>
+  </li>
+<% end %>
+</ul>
+<%= link_to 'New Event', :controller => 'schools', :action => 'new' %>
