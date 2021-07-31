@@ -4,7 +4,8 @@
       <%= school.name %>
       <%= link_to "Show", school_path(school) %>
       <%= link_to 'Edit', edit_school_path(school) %>
-      <%= button_to 'Delete', school_path(school), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+      <%= link_to 'staffs', school_school_staffs_path(school) %>
+      <%= link_to 'Delete', school_path(school), :method => :delete, :data => { :confirm => "Are you sure?" } %>
     </li>
   <% end %>
 </ul>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  resources :schools
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :schools do
+    resources :school_staffs, :controller => 'school_school_staffs'
+  end
+
+
 end
