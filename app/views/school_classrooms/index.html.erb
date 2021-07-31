@@ -1,0 +1,14 @@
+<ul>
+<% @classrooms.each do |classroom| %>
+	<li>
+	  <%= classroom.name %>
+	  <%= link_to 'show', school_classroom_path(@school, classroom) %>
+	  <%= link_to 'edit', edit_school_classroom_path(@school, classroom) %>
+	  <%= link_to 'destroy', school_classroom_path(@school, classroom),
+	                            :method => :delete %>
+	</li>
+<% end %>
+
+</ul>
+
+<%= link_to 'new classroom', new_school_classroom_path(@school) %>
