@@ -1,4 +1,4 @@
-<%= form_for @school, :url => { :controller => 'schools', :action => 'update', :id => @school } do |f| %>
+<%= form_for @school, :url => school_path(@school), :method => :patch do |f| %>
     <%= render :partial => 'form', :locals => { :f => f } %>
     <%= f.submit "Update" %>
 <% end %>

@@ -1,6 +1,6 @@
 <% if @school.errors.any? %>
     <ul>
-        <% @event.errors.full_messages.each do |msg| %>
+        <% @school.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
         <% end %>
     </ul>
