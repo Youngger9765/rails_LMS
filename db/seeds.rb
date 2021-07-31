@@ -17,5 +17,15 @@ print("User seed is creating")
   user.save!
 end
 
+# School
+print("School seed is creating")
+6.times do
+  school=School.new(
+    name: Faker::Team.name,
+    description: Faker::Team.sport,
+    is_public: [true, false].sample,
+  )
+  school.save!
+end
 
 
