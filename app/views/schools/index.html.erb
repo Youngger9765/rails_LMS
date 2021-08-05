@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
   <% @schools.each do |school| %>
     <li>
       <%= school.name %>
@@ -10,6 +10,31 @@
     </li>
   <% end %>
 </ul>
-<%= link_to 'New School', new_school_path %>
+<%= link_to 'New School', new_school_path %> -->
 
-<%= paginate @schools %>
+
+<div class="container mt-2">
+  <!--   <div class="card card-block mb-2">
+    <h4 class="card-title">Card 1</h4>
+    <p class="card-text">Welcom to bootstrap card styles</p>
+    <a href="#" class="btn btn-primary">Submit</a>
+  </div>   -->
+  <div class="row">
+    <% @schools.each do |school| %>
+      <div class="col-md-3 col-sm-6 item">
+        <div class="card item-card card-block">
+          <h4 class="card-title text-right"><i class="material-icons">settings</i></h4>
+          <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+          <h5 class="item-card-title mt-3 mb-3"><%=school.name%></h5>
+          <p class="card-text"><%=school.description%></p>
+        </div>
+      </div>
+    <%end%>
+
+  </div>
+
+</div>
+
+
+
+<%= will_paginate @schools, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
