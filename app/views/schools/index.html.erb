@@ -21,11 +21,12 @@
   </div>   -->
   <div class="row">
     <% @schools.each do |school| %>
-      <div class="col-md-3 col-sm-6 item">
+      <div class="col-md-3 col-sm-6 item mt-5 p-2 linkable">
         <div class="card item-card card-block">
-          <h4 class="card-title text-right"><i class="material-icons">settings</i></h4>
           <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
-          <h5 class="item-card-title mt-3 mb-3"><%=school.name%></h5>
+          <%= link_to school_path(school),class: "category-item" do%>
+            <h5 class="item-card-title mt-3 mb-3"><%=school.name%></h5>
+          <%end%>
           <p class="card-text"><%=school.description%></p>
         </div>
       </div>
@@ -36,5 +37,6 @@
 </div>
 
 
-
-<%= will_paginate @schools, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+<div class="container col-3 mx-auto mt-5">
+  <%= will_paginate @schools, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
