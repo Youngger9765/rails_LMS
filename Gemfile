@@ -26,6 +26,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
+
 gem 'rails_admin', '~> 2.0'
 gem "kaminari"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
