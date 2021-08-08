@@ -9,4 +9,5 @@ window.closeNav = function() {
     document.getElementById("main").style.marginLeft = "0";
 };
 
+openNav();
 
