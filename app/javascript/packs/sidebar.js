@@ -1,14 +1,12 @@
-// $(document).ready(function () {
-//     console.log("ready!");
+console.log("ready!");
+window.openNav = function() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+};
 
-//     var menu_btn = document.querySelector("#menu-btn");
-//     var sidebar = document.querySelector("#sidebar");
-//     var container = document.querySelector(".my-container");
-//     menu_btn.addEventListener("click", () => {
-//         sidebar.classList.toggle("active-nav");
-//         container.classList.toggle("active-cont");
-//     });
+window.closeNav = function() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+};
 
-//     console.log('Hello, Cute CCH!')
 
-// });

@@ -1,24 +1,4 @@
-<!-- <ul>
-  <% @schools.each do |school| %>
-    <li>
-      <%= school.name %>
-      <%= link_to "Show", school_path(school) %>
-      <%= link_to 'Edit', edit_school_path(school) %>
-      <%= link_to 'staffs', school_school_staffs_path(school) %>
-      <%= link_to 'classrooms', school_classrooms_path(school) %>
-      <%= link_to 'Delete', school_path(school), :method => :delete, :data => { :confirm => "Are you sure?" } %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to 'New School', new_school_path %> -->
-
-
 <div class="container mt-2">
-  <!--   <div class="card card-block mb-2">
-    <h4 class="card-title">Card 1</h4>
-    <p class="card-text">Welcom to bootstrap card styles</p>
-    <a href="#" class="btn btn-primary">Submit</a>
-  </div>   -->
   <div class="row">
     <% @schools.each do |school| %>
       <div class="col-md-3 col-sm-6 item mt-5 p-2 linkable">
@@ -31,11 +11,8 @@
         </div>
       </div>
     <%end%>
-
   </div>
-
 </div>
-
 
 <div class="container col-3 mx-auto mt-5">
   <%= will_paginate @schools, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

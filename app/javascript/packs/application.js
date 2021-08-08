@@ -29,3 +29,9 @@ document.addEventListener("turbolinks:load", function () {
         $('[data-toggle="popover"]').popover()
     })
 })
+
+
+window.aaa=function() {
+    console.log('Hello, Cute CCH!')
+};
+aaa();

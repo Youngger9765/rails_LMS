@@ -1,4 +1,32 @@
-<%= @school.name %>
-<%= simple_format(@school.description) %>
+<%= link_to 'Back to index' , schools_path %>
 
-<p><%= link_to 'Back to index', schools_path %></p>
+<!-- banner -->
+<img src="https://fakeimg.pl/350x200/ff0000,128/000,255">
+
+<!-- school info -->
+<h1><%= @school.name %></h1>
+<h2><%= simple_format(@school.description) %></h2>
+<hr />
+
+<!-- classrooms -->
+<h1>Classrooms</h1>
+<div class="container mt-2">
+    <div class="row">
+        <% @classrooms.each do |classroom| %>
+            <div class="col-md-3 col-sm-6 item mt-2 p-2 linkable">
+                <div class="card item-card card-block">
+                    <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg"
+                        alt="Photo of sunset">
+                    <%= link_to school_classroom_path(@school,classroom) do%>
+                        <h5 class="item-card-title mt-3 mb-3 p-2">
+                            <%=classroom.name%>
+                        </h5>
+                    <%end%>
+                    <p class="card-text p-2">
+                        <%=classroom.description%>
+                    </p>
+                </div>
+            </div>
+        <%end%>
+    </div>
+</div>
