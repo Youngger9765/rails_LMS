@@ -31,6 +31,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
+gem "omniauth-rails_csrf_protection"
 
 gem 'rails_admin', '~> 2.0'
 gem "kaminari"
