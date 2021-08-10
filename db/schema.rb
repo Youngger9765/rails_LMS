@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_134743) do
+ActiveRecord::Schema.define(version: 2021_08_10_151747) do
 
   create_table "classroom_teacher_ships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "classroom_id"
@@ -30,6 +30,28 @@ ActiveRecord::Schema.define(version: 2021_08_08_134743) do
     t.integer "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "course_teacher_ships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "teacher_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_teacher_ships_on_course_id"
+    t.index ["teacher_id"], name: "index_course_teacher_ships_on_teacher_id"
+  end
+
+  create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "school_id"
+    t.string "name"
+    t.text "description"
+    t.text "goal"
+    t.text "note"
+    t.text "tool"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_courses_on_name"
+    t.index ["school_id"], name: "index_courses_on_school_id"
   end
 
   create_table "identities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

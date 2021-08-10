@@ -3,4 +3,5 @@ class School < ApplicationRecord
 
     has_many :school_staffs
     has_many :classrooms
+    has_many :courses 
 end

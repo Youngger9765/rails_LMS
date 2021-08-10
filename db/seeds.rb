@@ -58,6 +58,7 @@ School.all.each do |school|
 end
 
 # Teacher / classroom ships
+puts("Teacher/classroom ships seed is creating")
 Classroom.all.each do |classroom|
 	staffs = classroom.school.school_staffs.limit(2)
 	staffs.each do |staff|
@@ -74,3 +75,34 @@ Classroom.all.each do |classroom|
 	end
 end
 
+# Course
+puts("Course/Teacher ships seed is creating")
+School.all.each do |school|
+	rand(5).times do
+		course = school.courses.create(
+			name: Faker::Team.name,
+			description: Faker::Team.sport,
+			goal: Faker::Lorem.paragraph,
+      		note: Faker::Lorem.paragraph,
+      		tool: Faker::Lorem.paragraph
+		)
+
+		staffs = school.school_staffs.limit([1,2].sample)
+		staffs.each do |staff|
+			teacher = Teacher.find_by(:user_id => staff.user_id)
+			if teacher.nil?
+				teacher = Teacher.new(
+					:name => staff.name,
+					:user_id => staff.user_id			
+				)
+				teacher.save!
+			end
+
+			CourseTeacherShip.create(
+				teacher_id: teacher.id,
+				course_id: course.id
+			)
+		end
+
+	end
+end
