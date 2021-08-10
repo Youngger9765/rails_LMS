@@ -1,0 +1,4 @@
+<%= form_for @course, :url=> school_course_path(@school, @course), :html => { :method => :patch } do |f| %>
+    <%= render :partial=> 'form', :locals => { :f => f } %>
+    <%= f.submit %>
+<% end %>

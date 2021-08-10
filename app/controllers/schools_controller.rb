@@ -22,6 +22,7 @@ class SchoolsController < ApplicationController
     def show
         @page_title = @school.name
         @classrooms = @school.classrooms
+        @courses = @school.courses
     end
 
     def edit

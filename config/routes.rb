@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :classrooms, :controller => 'school_classrooms' do
       resources :teachers, :controller => 'classroom_teachers'
     end
+    resources :courses, :controller => 'school_courses' do
+      resources :teachers, :controller => 'course_teachers'
+    end
   end
 
   root :to => 'homepage#index'
