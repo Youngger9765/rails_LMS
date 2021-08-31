@@ -33,7 +33,7 @@ puts("School staff seed is creating")
 School.all.each do |school|
 	users = User.limit(5) 
 	users.each do |user|
-		school.school_staffs.create( 
+		school.staffs.create( 
 			:name =>  Faker::Internet.user_name,
 			:title => ["owner","teacher","school_admin"].sample,
 			:user_id => user.id
@@ -60,7 +60,7 @@ end
 # Teacher / classroom ships
 puts("Teacher/classroom ships seed is creating")
 Classroom.all.each do |classroom|
-	staffs = classroom.school.school_staffs.limit(2)
+	staffs = classroom.school.staffs.limit(2)
 	staffs.each do |staff|
 		teacher = Teacher.new(
 			:name => staff.name,
@@ -87,7 +87,7 @@ School.all.each do |school|
       		tool: Faker::Lorem.paragraph
 		)
 
-		staffs = school.school_staffs.limit([1,2].sample)
+		staffs = school.staffs.limit([1,2].sample)
 		staffs.each do |staff|
 			teacher = Teacher.find_by(:user_id => staff.user_id)
 			if teacher.nil?

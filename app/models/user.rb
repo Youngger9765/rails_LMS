@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  has_many :school_staffs
+  has_many :staffs
   has_many :identities
 
   def self.from_omniauth(auth, signed_in_resource = nil)

@@ -1,4 +1,4 @@
-class SchoolCoursesController < ApplicationController
+class CoursesController < ApplicationController
     before_action :find_school
 
     def index

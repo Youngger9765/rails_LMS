@@ -23,6 +23,7 @@ class SchoolsController < ApplicationController
         @page_title = @school.name
         @classrooms = @school.classrooms
         @courses = @school.courses
+        @staffs = @school.staffs
     end
 
     def edit

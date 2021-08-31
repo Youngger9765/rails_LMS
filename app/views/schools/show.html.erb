@@ -54,3 +54,26 @@
             <%end%>
     </div>
 </div>
+
+<!-- Staffs -->
+<h1>Staffs</h1>
+<div class="container mt-2">
+    <div class="row">
+        <% @staffs.each do |staff| %>
+            <div class="col-md-3 col-sm-6 item mt-2 p-2 linkable">
+                <div class="card item-card card-block">
+                    <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg"
+                        alt="Photo of sunset">
+                    <%= link_to school_staff_path(@school,staff) do%>
+                        <h5 class="item-card-title mt-3 mb-3 p-2">
+                            <%=staff.name%>
+                        </h5>
+                        <%end%>
+                            <p class="card-text p-2">
+                                <%=staff.title%>
+                            </p>
+                </div>
+            </div>
+            <%end%>
+    </div>
+</div>

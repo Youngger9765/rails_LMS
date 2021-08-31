@@ -1,4 +1,4 @@
-class ClassroomTeachersController < ApplicationController
+class TeachersController < ApplicationController
 
     before_action :find_school
     before_action :find_classroom
