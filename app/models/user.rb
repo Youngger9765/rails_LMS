@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :staffs
   has_many :identities
+  has_many :teachers
 
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)

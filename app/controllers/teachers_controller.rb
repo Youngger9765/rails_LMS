@@ -2,13 +2,18 @@ class TeachersController < ApplicationController
 
     before_action :find_school
     before_action :find_classroom
+    before_action :find_course
 
     def index
         @teachers = @classroom.teachers
     end
 
     def show
-        @teacher = @classroom.teachers.find( params[:id] )
+        if @classroom.present?
+            @teacher = @classroom.teachers.find( params[:id] )
+        elsif @course.present?
+            @teacher = @course.teachers.find( params[:id] )
+        end
     end
 
     def new
@@ -54,11 +59,21 @@ class TeachersController < ApplicationController
     protected
 
     def find_school
-        @school = School.find( params[:school_id] )
+        if params[:school_id]
+            @school = School.find( params[:school_id] )
+        end
     end
 
     def find_classroom
-        @classroom = Classroom.find( params[:classroom_id] )
+        if params[:classroom_id].present?
+            @classroom = Classroom.find( params[:classroom_id] )
+        end
+    end
+
+    def find_course
+        if params[:course_id].present?
+            @course = Course.find( params[:course_id] )
+        end
     end
 
     def teacher_params
