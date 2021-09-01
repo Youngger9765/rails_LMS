@@ -1,0 +1,12 @@
+<ul>
+    <% @sections.each do |section| %>
+        <li>
+            <%= section.name %>
+            <%= link_to 'show' , school_course_section_path(@school, @course, section) %>
+            <%= link_to 'edit' , edit_school_course_section_path(@school, @course, section) %>
+            <%= link_to 'destroy' , school_course_section_path(@school, @course, section), :method=> :delete %>
+        </li>
+    <% end %>
+</ul>
+
+<%= link_to 'new section' , new_school_course_section_path(@school, @course) %>

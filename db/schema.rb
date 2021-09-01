@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_064039) do
+ActiveRecord::Schema.define(version: 2021_09_01_080513) do
 
   create_table "classroom_teacher_ships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "classroom_id"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 2021_08_31_064039) do
     t.boolean "is_public"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "course_id"
+    t.string "name"
+    t.text "description"
+    t.integer "position_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_sections_on_course_id"
+    t.index ["name"], name: "index_sections_on_name"
   end
 
   create_table "staffs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

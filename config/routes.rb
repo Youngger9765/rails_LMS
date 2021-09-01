@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :courses do
       resources :teachers
+      resources :sections
     end
   end
 

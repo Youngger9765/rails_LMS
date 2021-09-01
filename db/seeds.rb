@@ -106,3 +106,16 @@ School.all.each do |school|
 
 	end
 end
+
+# Sections
+puts("Sections seed is creating")
+Course.all.each do |course|
+	rand(5).times do
+		position_id = course.sections.size + 1
+		section = course.sections.create(
+			name: Faker::Team.name,
+			description: Faker::Team.sport,
+			position_id: position_id
+		)
+	end
+end

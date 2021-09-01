@@ -34,3 +34,27 @@
             <%end%>
     </div>
 </div>
+
+<!-- Sections -->
+<h3>Sections</h3>
+<div class="container mt-2">
+    <div class="row">
+        <% @sections.each do |section|%>
+            <div class="col-md-12 col-sm-12 item mt-12 p-12 linkable">
+                <div class="card item-card card-block">
+                    <%= link_to school_course_section_path(@school,@course,section) do%>
+                        <h5 class="item-card-title mt-3 mb-3 p-2">
+                            <%=section.name%>
+                        </h5>
+                    <%end%>
+                    <p class="">
+                        <%=section.description%>
+                    </p>
+                    <p class="">
+                        position_id: <%=section.position_id%>
+                    </p>
+                </div>
+            </div>
+        <%end%>
+    </div>
+</div>
