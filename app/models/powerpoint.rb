@@ -1,0 +1,2 @@
+class Powerpoint < ApplicationRecord
+end
