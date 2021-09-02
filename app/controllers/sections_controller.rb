@@ -12,6 +12,28 @@ class SectionsController < ApplicationController
         elsif @course.present?
             @section = @course.sections.find( params[:id] )
         end
+
+        # contents
+        contents = @section.contents
+        @content_list = []
+        contents.order(:position).each do |content|
+            if content.contentable_type == "Video"
+                video = Video.find(content.contentable_id)
+                content_obj = {
+                    "kind": content.contentable_type,
+                    "name": video.name,
+                    "url": video.url
+                }
+            elsif content.contentable_type == "Powerpoint"
+                ppt = Powerpoint.find(content.contentable_id)
+                content_obj = {
+                    "kind": content.contentable_type,
+                    "name": ppt.name,
+                    "url": ppt.url
+                }
+            end
+            @content_list << content_obj
+        end
     end
 
     def new

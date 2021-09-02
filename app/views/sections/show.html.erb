@@ -1,5 +1,4 @@
 <h1>Section</h1>
-
 <p>
     <%= @section.name %>
 </p>
@@ -9,3 +8,26 @@
 <p>
     <%= @section.position_id %>
 </p>
+
+
+<!-- Contents -->
+<h1>Contents</h1>
+<div class="container mt-2">
+    <div class="row">
+        <% @content_list.each do |content| %>
+            <div class="col-md-12 col-sm-12 item mt-2 p-2 linkable">
+                <div class="card item-card card-block">
+                    <h3>
+                        <%= content[:kind]%>
+                    </h3>
+                    <h5 class="item-card-title mt-3 mb-3 p-2">
+                        <%=content[:name]%>
+                    </h5>
+                    <p class="card-text p-2">
+                        <%=content[:url]%>
+                    </p>
+                </div>
+            </div>
+            <%end%>
+    </div>
+</div>
