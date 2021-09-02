@@ -44,7 +44,7 @@ end
 # Classroom
 puts("Classroom seed is creating")
 School.all.each do |school|
-	rand(8).times do
+	rand(1..8).times do
 		school.classrooms.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
@@ -78,7 +78,7 @@ end
 # Course
 puts("Course/Teacher ships seed is creating")
 School.all.each do |school|
-	rand(5).times do
+	rand(1..5).times do
 		course = school.courses.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
@@ -107,15 +107,42 @@ School.all.each do |school|
 	end
 end
 
-# Sections
-puts("Sections seed is creating")
+# Sections/Content/Video,ppt
+puts("Sections/Content seed is creating")
 Course.all.each do |course|
-	rand(5).times do
+	rand(1..5).times do
 		position_id = course.sections.size + 1
 		section = course.sections.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
 			position_id: position_id
 		)
+
+		# Content maker
+		rand(1..3).times do
+			video = Video.create(
+				name: Faker::Team.name,
+				url: Faker::Internet.url,
+			)
+			content = section.contents.create(
+				:contentable => video
+			)
+		end
+		rand(1..3).times do
+			ppt = Powerpoint.create(
+				name: Faker::Team.name,
+				url: Faker::Internet.url,
+			)
+			content = section.contents.create(
+				:contentable => ppt
+			)
+		end
+		
+		position = 1
+		section.contents.shuffle.each do |content|
+			content.position = position
+			content.save!
+			position +=1
+		end
 	end
 end
