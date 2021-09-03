@@ -107,6 +107,19 @@ School.all.each do |school|
 	end
 end
 
+# Classroom / Course
+puts("Classroom/Course seed is creating")
+Classroom.all.each do |classroom|
+	school = classroom.school
+	select_courses = school.courses.order("RAND()").limit([1,4].sample)
+	select_courses.all.each do |course|
+		ClassroomCourseShip.create(
+			:classroom_id => classroom.id,
+			:course_id => course.id
+		)
+	end
+end
+
 # Sections/Content/Video,ppt
 puts("Sections/Content seed is creating")
 Course.all.each do |course|
@@ -124,7 +137,7 @@ Course.all.each do |course|
 				name: Faker::Team.name,
 				url: Faker::Internet.url,
 			)
-			content = section.contents.create(
+			section.contents.create(
 				:contentable => video
 			)
 		end
@@ -133,7 +146,7 @@ Course.all.each do |course|
 				name: Faker::Team.name,
 				url: Faker::Internet.url,
 			)
-			content = section.contents.create(
+			section.contents.create(
 				:contentable => ppt
 			)
 		end
