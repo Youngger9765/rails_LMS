@@ -4,4 +4,6 @@ class School < ApplicationRecord
     has_many :staffs
     has_many :classrooms
     has_many :courses 
+
+    has_rich_text :body
 end

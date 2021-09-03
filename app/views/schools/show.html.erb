@@ -7,8 +7,13 @@
 <!-- school info -->
 <h1><%= @school.name %></h1>
 <h2><%= simple_format(@school.description) %></h2>
-<hr />
 
+<div class="container">
+    <%= @school.body %>
+</div>
+
+
+<hr />
 <!-- classrooms -->
 <h1>Classrooms</h1>
 <div class="container mt-2">

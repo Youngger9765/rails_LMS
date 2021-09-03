@@ -12,6 +12,8 @@ import 'jquery'
 import 'popper.js'
 import "@fortawesome/fontawesome-free/js/all"
 import 'bootstrap/dist/js/bootstrap'
+import "trix"
+import "@rails/actiontext"
 
 
 const images = require.context('../images', true)
@@ -30,8 +32,3 @@ document.addEventListener("turbolinks:load", function () {
     })
 })
 
-
-window.aaa=function() {
-    console.log('Hello, Cute CCH!')
-};
-aaa();
