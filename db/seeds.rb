@@ -135,7 +135,7 @@ Course.all.each do |course|
 		rand(1..3).times do
 			video = Video.create(
 				name: Faker::Team.name,
-				url: Faker::Internet.url,
+				url: "https://www.youtube.com/watch?v=4GawY9Tomlk",
 			)
 			section.contents.create(
 				:contentable => video
