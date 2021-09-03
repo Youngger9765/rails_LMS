@@ -15,7 +15,7 @@
 <div class="container mt-2">
     <div class="row">
         <% @content_list.each do |content| %>
-            <div class="col-md-12 col-sm-12 item mt-2 p-2 linkable">
+            <div class="col-md-12 col-sm-12 item mt-2 p-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="card item-card card-block">
                     <h3>
                         <%= content[:kind]%>
@@ -26,8 +26,11 @@
                     <p class="card-text p-2">
                         <%=content[:url]%>
                     </p>
+                    
                 </div>
+                <%= render :partial=> 'video_modal'%>
             </div>
-            <%end%>
+            
+        <%end%>
     </div>
 </div>
