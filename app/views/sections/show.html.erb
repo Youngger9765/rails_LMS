@@ -14,8 +14,9 @@
 <h1>Contents</h1>
 <div class="container mt-2">
     <div class="row">
-        <% @content_list.each do |content| %>
-            <div class="col-md-12 col-sm-12 item mt-2 p-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <% @content_list.each_with_index do |content, index| %>
+            <% data_bs_target="Modal-#{index}" %>
+            <div class="col-md-12 col-sm-12 item mt-2 p-2" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>"">
                 <div class="card item-card card-block">
                     <h3>
                         <%= content[:kind]%>
@@ -28,7 +29,7 @@
                     </p>
                     
                 </div>
-                <%= render :partial=> 'video_modal'%>
+                <%= render :partial=> 'video_modal', :locals => {:data_bs_target => data_bs_target}%>
             </div>
             
         <%end%>
