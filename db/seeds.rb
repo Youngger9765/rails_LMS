@@ -19,7 +19,7 @@ end
 
 # School
 puts("School seed is creating")
-6.times do
+3.times do
 	school = School.new(
 		name: Faker::Team.name,
 		description: Faker::Team.sport,
@@ -44,7 +44,7 @@ end
 # Classroom
 puts("Classroom seed is creating")
 School.all.each do |school|
-	rand(1..8).times do
+	rand(1..3).times do
 		school.classrooms.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
@@ -78,7 +78,7 @@ end
 # Course
 puts("Course/Teacher ships seed is creating")
 School.all.each do |school|
-	rand(1..5).times do
+	rand(1..3).times do
 		course = school.courses.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
@@ -123,7 +123,7 @@ end
 # Sections/Content/Video,ppt
 puts("Sections/Content seed is creating")
 Course.all.each do |course|
-	rand(1..5).times do
+	rand(1..3).times do
 		position_id = course.sections.size + 1
 		section = course.sections.create(
 			name: Faker::Team.name,
@@ -132,10 +132,22 @@ Course.all.each do |course|
 		)
 
 		# Content maker
+		videos_url_list = [
+			"https://www.youtube.com/watch?v=U8stOjNfiM0&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=1&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=zKSD68Xnfhc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=2",
+			"https://www.youtube.com/watch?v=Jkqcx4kApUE&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=3&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=IyEdUFO3thg&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=4&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=MXRIX1PzBAg&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=5",
+			"https://www.youtube.com/watch?v=8ts3I-Sf4Yc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=6",
+			"https://www.youtube.com/watch?v=vq6w1MmjBDo&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=7&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=sQWD5xAgkwM&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=8&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=hMNYiCmUhNc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=9&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
+			"https://www.youtube.com/watch?v=NBrO7a3HKyk&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=10&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6"
+		]
 		rand(1..3).times do
 			video = Video.create(
 				name: Faker::Team.name,
-				url: "https://www.youtube.com/watch?v=4GawY9Tomlk",
+				url: videos_url_list.sample,
 			)
 			section.contents.create(
 				:contentable => video
