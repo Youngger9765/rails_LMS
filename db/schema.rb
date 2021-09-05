@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_132619) do
+ActiveRecord::Schema.define(version: 2021_09_05_064319) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -180,6 +180,16 @@ ActiveRecord::Schema.define(version: 2021_09_03_132619) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_available"
+    t.string "provider"
+    t.string "video_id"
+    t.string "title"
+    t.integer "duration"
+    t.text "thumbnail_small"
+    t.text "thumbnail_medium"
+    t.text "thumbnail_large"
+    t.text "embed_url"
+    t.text "embed_code"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

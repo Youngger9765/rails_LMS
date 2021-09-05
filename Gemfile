@@ -25,6 +25,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
+# Video
+# gem 'youtube_it'
+
+# https://github.com/thibaudgg/video_info
+gem 'video_info' 
+
 gem 'devise'
 
 gem 'omniauth'
