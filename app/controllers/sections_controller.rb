@@ -22,7 +22,11 @@ class SectionsController < ApplicationController
                 content_obj = {
                     "kind": content.contentable_type,
                     "name": video.name,
-                    "url": video.url
+                    "title": video.title,
+                    "url": video.url,
+                    "embed_url": video.embed_url,
+                    "thumbnail_medium": video.thumbnail_medium,
+                    "duration": video.duration
                 }
             elsif content.contentable_type == "Powerpoint"
                 ppt = Powerpoint.find(content.contentable_id)
