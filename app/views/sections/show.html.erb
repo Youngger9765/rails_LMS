@@ -21,20 +21,29 @@
                     <h3>
                         <%= content[:kind]%>
                     </h3>
-                    <% if content.key?(:thumbnail_medium)%>
-                        <img src="<%=content[:thumbnail_medium]%>">
-                    <% end%>
-                    <h5 class="item-card-title mt-3 mb-3 p-2">
-                        <%=content[:name]%>
-                    </h5>
-                    <p class="card-text p-2">
-                        <%=content[:url]%>
-                    </p>
-                    <% if content.key?(:duration)%>
-                        <p class="card-text p-2">
-                            duration: <%=content[:duration]%>
-                        </p>
-                    <% end%>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 item mt-2 p-2">
+                            <% if content.key?(:thumbnail_medium)%>
+                                <img src="<%=content[:thumbnail_medium]%>">
+                            <% end%>
+                        </div>
+                        <div class="col-md-8 col-sm-8 item">
+                            <h5 class="card-text p-2">
+                                <%=content[:name]%>
+                            </h5>
+                            <p class="card-text p-2">
+                                <%=content[:url]%>
+                            </p>
+                            <% if content.key?(:duration)%>
+                                <p class="card-text p-2">
+                                    duration: <%=content[:duration]%>
+                                </p>
+                                <% end%>
+                        </div>
+                        
+                    </div>
+                    
+                    
                 </div>
                 <% if content[:kind] == "Video"%>
                     <%= render :partial=> 'video_modal', :locals => {
