@@ -27,7 +27,7 @@ gem 'image_processing', '~> 1.2'
 
 # Video
 # gem 'youtube_it'
-
+# gem "yt"
 # https://github.com/thibaudgg/video_info
 gem 'video_info' 
 
