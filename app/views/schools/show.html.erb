@@ -82,3 +82,24 @@
             <%end%>
     </div>
 </div>
+
+<!-- Students -->
+<h1>Students</h1>
+<%= link_to "student index", school_students_path(@school)%>
+<div class="container mt-2">
+    <div class="row">
+        <% @students.each do |student| %>
+            <div class="col-md-3 col-sm-6 item mt-2 p-2 linkable">
+                <div class="card item-card card-block">
+                    <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg"
+                        alt="Photo of sunset">
+                    <%= link_to school_student_path(@school,student) do%>
+                        <h5 class="item-card-title mt-3 mb-3 p-2">
+                            <%=student.name%>
+                        </h5>
+                    <%end%>
+                </div>
+            </div>
+        <%end%>
+    </div>
+</div>

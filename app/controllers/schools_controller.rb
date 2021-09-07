@@ -24,6 +24,7 @@ class SchoolsController < ApplicationController
         @classrooms = @school.classrooms
         @courses = @school.courses
         @staffs = @school.staffs
+        @students = @school.students
     end
 
     def edit

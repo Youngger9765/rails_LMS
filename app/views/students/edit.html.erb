@@ -1,0 +1,4 @@
+<%= form_for @student, :url=> school_student_path(@school,@student), :html => { :method => :patch } do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+<% end %>
