@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
     before_action :set_school, :only => [ :show, :edit, :update, :destroy]
 
     def index
-        @schools = School.page(params[:page]).per(5)
+        @schools = School.paginate(:page => params[:page], :per_page => 5)
     end
 
     def new

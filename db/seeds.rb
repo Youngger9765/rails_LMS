@@ -19,7 +19,7 @@ end
 
 # School
 puts("School seed is creating")
-3.times do
+10.times do
 	school = School.new(
 		name: Faker::Team.name,
 		description: Faker::Team.sport,
