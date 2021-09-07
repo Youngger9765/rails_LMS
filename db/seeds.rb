@@ -31,7 +31,7 @@ end
 # School staff
 puts("School staff seed is creating")
 School.all.each do |school|
-	users = User.limit(5) 
+	users = User.order("RAND()").limit(5) 
 	users.each do |user|
 		school.staffs.create( 
 			:name =>  Faker::Internet.user_name,
@@ -57,8 +57,25 @@ School.all.each do |school|
 	end
 end
 
-# Teacher / classroom ships
-puts("Teacher/classroom ships seed is creating")
+# Student
+puts("Student seed is creating")
+School.all.each do |school|
+	users = User.order("RAND()").limit(rand(5..20)) 
+	users.each do |user|
+		school.students.create( 
+			:name =>  Faker::Internet.user_name,
+			:user_id => user.id,
+			:city => Faker::Team.name,
+			:age => 15,
+			:grade => 8,
+			:school_name => Faker::Team.name,
+			:school_type => ["國小", "國中", "高中"].sample
+		)
+	end
+end
+
+# classroom / Teacher / Student ships
+puts("classroom / Teacher / Student ships seed is creating")
 Classroom.all.each do |classroom|
 	staffs = classroom.school.staffs.limit(2)
 	staffs.each do |staff|
@@ -73,6 +90,15 @@ Classroom.all.each do |classroom|
 			classroom_id: classroom.id
 		)
 	end
+
+	students = classroom.school.students.order("RAND()").limit(rand(5..10))
+	students.each do |student|
+		ClassroomStudentShip.create(
+			student_id: student.id,
+			classroom_id: classroom.id
+		)
+	end
+
 end
 
 # Course
