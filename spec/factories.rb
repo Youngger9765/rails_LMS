@@ -5,7 +5,6 @@ FactoryBot.define do
 
   factory :student do
     name { Faker::Team.name }
-    description { Faker::Team.sport }
     age { rand(3..80) }
     city { Faker::Team.name }
     school_name { Faker::Team.sport }
