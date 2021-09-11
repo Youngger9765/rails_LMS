@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
   root :to => 'homepage#index'
 
+  post '/videos/save_log', to: 'videos#save_log'
 
 end

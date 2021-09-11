@@ -87,11 +87,33 @@
         }
         if (color) {
             document.getElementById('existing-iframe-example').style.borderColor = color;
-            console.log("status: " + status);
-            console.log("speed: " + speed);
-            console.log("isChangeSpeed: " + isChangeSpeed);
-            console.log("currentTime: " + currentTime);
-            console.log("lastWatchTime: " + lastWatchTime);
+            // console.log("status: " + status);
+            // console.log("speed: " + speed);
+            // console.log("isChangeSpeed: " + isChangeSpeed);
+            // console.log("currentTime: " + currentTime);
+            // console.log("lastWatchTime: " + lastWatchTime);
+            var video_log_data = {
+                'video_id': <%= video_id %>,
+                'status': status,
+                'speed': speed,
+                'isChangeSpeed': isChangeSpeed,
+                'currentTime': currentTime,
+                'lastWatchTime': lastWatchTime
+            };
+            console.log(video_log_data);
+
+            $.ajax({
+                type: 'POST',
+                url: '/videos/save_log',
+                data: {'video_log_data': video_log_data}
+                // success: function () {
+                //     //I assume you want to do something on controller action execution success?
+                //     // $(this).addClass('done');
+                //     console.log('done')
+                // }
+            });
+
+
         }
     }
     function onPlayerStateChange(event) {

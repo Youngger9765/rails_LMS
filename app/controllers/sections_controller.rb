@@ -20,6 +20,7 @@ class SectionsController < ApplicationController
             if content.contentable_type == "Video"
                 video = Video.find(content.contentable_id)
                 content_obj = {
+                    "video_id": video.id,
                     "kind": content.contentable_type,
                     "name": video.name,
                     "title": video.title,

@@ -1,6 +1,10 @@
 class Video < ApplicationRecord
     after_create :get_video_info
 
+    def active_log
+        @active_log ||= ActiveLog::VideoInterface.new(self)
+    end
+
     def get_video_info
         url = self.url
         video = VideoInfo.new(url)
