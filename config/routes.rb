@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
   root :to => 'homepage#index'
 
+  namespace :admin do
+    resources :schools
+ end
 
 end
