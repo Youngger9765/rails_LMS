@@ -1,8 +1,8 @@
 class Video < ApplicationRecord
     after_create :get_video_info
 
-    def active_log
-        @active_log ||= ActiveLog::VideoInterface.new(self)
+    def learninig_mode
+        @learninig_mode ||= LearninigMode::VideoInterface.new(self)
     end
 
     def get_video_info

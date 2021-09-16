@@ -6,7 +6,7 @@ class VideosController < ApplicationController
         puts("params=============")        
         puts(params)
         video = Video.find(video_id)
-        video.active_log.save_to_db()
+        video.learninig_mode.save_to_db()
 
         return "OK!"
     end

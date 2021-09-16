@@ -1,4 +1,4 @@
-module ActiveLog
+module LearningMode
   class VideoInterface
     attr_reader :video
 
