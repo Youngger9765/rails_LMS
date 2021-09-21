@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :courses
-  end
   mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
@@ -23,7 +20,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :schools do
       resources :classrooms
-      resources :courses
+      resources :courses do
+        resources :sections
+      end
     end
  end
 

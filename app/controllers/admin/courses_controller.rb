@@ -14,6 +14,7 @@ class Admin::CoursesController < ApplicationController
 
   # GET /admin/courses/1 or /admin/courses/1.json
   def show
+    @admin_sections = @admin_course.sections.all
   end
 
   # GET /admin/courses/new

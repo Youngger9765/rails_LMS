@@ -1,0 +1,31 @@
+<%= form_with(model: [@admin_school, @admin_course, @admin_section]) do |f| %>
+  <% if admin_section.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(admin_section.errors.count, "error" ) %> prohibited this admin_section from being saved:
+      </h2>
+
+      <ul>
+        <% admin_section.errors.each do |error| %>
+          <li>
+            <%= error.full_message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="card-admin">
+      <div class="card-body">
+        <div class="mb-3">
+          <%= f.label :name, { class: "form-label" }%>
+          <%= f.text_field :name, { class: "form-control" } %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :description, { class: "form-label" }%>
+          <%= f.text_area :description, { class: "form-control" } %>
+        </div>
+        <%= f.submit 'Submit' , :class=> "btn btn-primary"%>
+      </div>
+    </div>
+<% end %>

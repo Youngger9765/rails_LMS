@@ -2,3 +2,13 @@
 
 <%= link_to 'Edit' , edit_admin_school_course_path(@admin_school, @admin_course) %> |
 <%= link_to 'Back' , admin_school_courses_path(@admin_school) %>
+
+<h1> Course Name: <%= @admin_course.name %> </h1>
+
+<h3>Sections</h3>
+<%= link_to("admin_sections", admin_school_course_sections_path(@admin_school,@admin_course))    %>
+<% @admin_sections.each do |admin_section|%>
+    <li>
+        <%= admin_section.name %>
+    </li>
+<%end%>

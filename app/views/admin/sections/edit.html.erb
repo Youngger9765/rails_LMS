@@ -1,0 +1,8 @@
+<h1>Editing Admin Section</h1>
+
+<%= link_to 'Show' , admin_school_course_section_path(@admin_school, @admin_course, @admin_section) %> |
+<%= link_to 'Back' , admin_school_course_sections_path(@admin_school, @admin_course) %>
+
+
+<%= render 'form', admin_section: @admin_section %>
+
