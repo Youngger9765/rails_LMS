@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :admin_course, class: 'Admin::Course' do
+    
+  end
+
   factory :admin_classroom, class: 'Admin::Classroom' do
     
   end

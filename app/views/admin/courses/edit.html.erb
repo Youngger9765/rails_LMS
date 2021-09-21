@@ -1,0 +1,7 @@
+<h1>Editing Admin Course</h1>
+
+<%= link_to 'Show' , admin_school_course_path(@admin_school, @admin_course) %> |
+<%= link_to 'Back' , admin_school_courses_path(@admin_school) %>
+
+
+<%= render 'form' , admin_course: @admin_course %>
