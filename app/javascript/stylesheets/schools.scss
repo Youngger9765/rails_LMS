@@ -28,8 +28,12 @@ img{
   
 }
 .card:hover{
-  transform: scale(1.05);
+  // transform: scale(1.05);
   box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
 .card-text{
   height:80px;  
@@ -55,4 +59,8 @@ img{
 }
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
   transform: scale3d(1, 1, 1);
+  -webkit-transform: scale3d(1, 1, 1);
+  -moz-transform: scale3d(1, 1, 1);
+  -ms-transform: scale3d(1, 1, 1);
+  -o-transform: scale3d(1, 1, 1);
 }

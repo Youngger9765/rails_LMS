@@ -1,0 +1,8 @@
+<h1>Editing Admin Classroom</h1>
+<%= link_to 'Show' , admin_school_classroom_path(@admin_school, @admin_classroom) %> |
+<%= link_to 'Back' , admin_school_classrooms_path(@admin_school) %>
+
+
+<%= render 'form', admin_classroom: @admin_classroom %>
+
+

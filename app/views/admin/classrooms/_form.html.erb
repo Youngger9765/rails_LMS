@@ -1,0 +1,43 @@
+<%= form_with(model: [@admin_school, @admin_classroom]) do |f| %>
+  <% if admin_classroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_classroom.errors.count, "error") %> prohibited this admin_classroom from being saved:</h2>
+
+      <ul>
+        <% admin_classroom.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-admin">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= f.label :name, { class: "form-label"}%>
+        <%= f.text_field :name, { class: "form-control"}  %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :description, { class: "form-label"}%>
+        <%= f.text_area :description, { class: "form-control"}  %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :city, { class: "form-label"}%>
+        <%= f.text_field :city, { class: "form-control"}  %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :school_name, { class: "form-label"}%>
+        <%= f.text_field :school_name, { class: "form-control"}  %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :school_type, { class: "form-label"} %>
+        <%= f.text_field :school_type, { class: "form-control"}  %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :grade, { class: "form-label"} %>
+        <%= f.text_field :grade, { class: "form-control"} %>
+      </div>
+      <%= f.submit 'Submit', :class=> "btn btn-primary"%>
+    </div>
+  </div>
+<% end %>

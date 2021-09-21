@@ -1,21 +1,26 @@
 <div id="mySidebar" class="sidebar">
     <div onclick="closeNav()"  class="closebtn" >×</div>
     <li href="#" class="nav-link">
+        <%= link_to("管理者後台", admin_schools_url)%>
+    </li>
+    <li href="#" class="nav-link">
         <%= link_to "搜尋學校" , schools_path %>
     </li>
     <li href="#" class="nav-link">
         <%= link_to "我的學校" , schools_path %>
     </li>
-    <% if current_user %>
-        <%= current_user.name%>
-        <%= current_user.email%>
-        <%= image_tag(current_user.avatar, height: '32', width: '32') %>
-        <%= link_to('登出', destroy_user_session_path, :method=> :delete) %> |
-        <%= link_to('修改密碼', edit_registration_path(:user)) %>
-    <% else %>
-        <%= link_to('註冊', new_registration_path(:user)) %> |
-        <%= link_to('登入', new_session_path(:user)) %>
-    <% end %>
+    <li href="#" class="nav-link">
+        <% if current_user %>
+            <%= current_user.name%>
+            <%= current_user.email%>
+            <%= image_tag(current_user.avatar, height: '32', width: '32') %>
+            <%= link_to('登出', destroy_user_session_path, :method=> :delete) %> |
+            <%= link_to('修改密碼', edit_registration_path(:user)) %>
+        <% else %>
+            <%= link_to('註冊', new_registration_path(:user)) %> |
+            <%= link_to('登入', new_session_path(:user)) %>
+        <% end %>
+    </li>
 </div>
 
 <div id="main">
