@@ -20,6 +20,7 @@ class SectionsController < ApplicationController
             if content.contentable_type == "Video"
                 video = Video.find(content.contentable_id)
                 content_obj = {
+                    "id": content.id,
                     "kind": content.contentable_type,
                     "name": video.name,
                     "title": video.title,
@@ -31,6 +32,7 @@ class SectionsController < ApplicationController
             elsif content.contentable_type == "Powerpoint"
                 ppt = Powerpoint.find(content.contentable_id)
                 content_obj = {
+                    "id": content.id,
                     "kind": content.contentable_type,
                     "name": ppt.name,
                     "url": ppt.url

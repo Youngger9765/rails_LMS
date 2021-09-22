@@ -19,28 +19,38 @@
     </thead>
     <tbody>
         <% @content_list.each_with_index do |content, index| %>
+            <% data_bs_target="Modal-#{index}" %>
             <tr>
                 <th scope="row"><%= index %></th>
                 <td>
                     <%= content[:kind] %>
                 </td>
                 <td>
-                    <%=content[:name]%>
+                    <%=content[:title]%>
                 </td>
                 <td>
                     <%=content[:url]%>
                 </td>
                 <td>
-                    <%= link_to("show", admin_school_course_section_path(@admin_school, @admin_course, ))%>
+                    <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>">
+                        show
+                    </div>
                 </td>
                 <td>
-                
                 </td>
                 <td>
-                
                 </td>
             </tr>
-            <%end%>
+            <% if content[:kind]=="Video" %>
+                <%= render :partial=> 'video_modal', :locals => {
+                    :data_bs_target => data_bs_target,
+                    :embed_url => content[:embed_url],
+                    :title => content[:title],
+                    :video => content[:video]
+                    }
+                %>
+            <% end %>
+        <%end%>
     </tbody>
     
 </table>

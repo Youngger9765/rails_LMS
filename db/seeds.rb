@@ -159,16 +159,16 @@ Course.all.each do |course|
 
 		# Content maker
 		videos_url_list = [
-			"https://www.youtube.com/watch?v=U8stOjNfiM0&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=1&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=zKSD68Xnfhc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=2",
-			"https://www.youtube.com/watch?v=Jkqcx4kApUE&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=3&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=IyEdUFO3thg&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=4&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=MXRIX1PzBAg&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=5",
-			"https://www.youtube.com/watch?v=8ts3I-Sf4Yc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=6",
-			"https://www.youtube.com/watch?v=vq6w1MmjBDo&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=7&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=sQWD5xAgkwM&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=8&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=hMNYiCmUhNc&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=9&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6",
-			"https://www.youtube.com/watch?v=NBrO7a3HKyk&list=PLrTCIgdLHnAovfmFEC6q1snSOldbIygRK&index=10&ab_channel=%E6%A8%8A%E7%99%BB%E8%AF%BB%E4%B9%A6"
+			"https://www.youtube.com/watch?v=U8stOjNfiM0",
+			"https://www.youtube.com/watch?v=zKSD68Xnfhc",
+			"https://www.youtube.com/watch?v=Jkqcx4kApUE",
+			"https://www.youtube.com/watch?v=IyEdUFO3thg",
+			"https://www.youtube.com/watch?v=MXRIX1PzBAg",
+			"https://www.youtube.com/watch?v=8ts3I-Sf4Yc",
+			"https://www.youtube.com/watch?v=vq6w1MmjBDo",
+			"https://www.youtube.com/watch?v=sQWD5xAgkwM",
+			"https://www.youtube.com/watch?v=hMNYiCmUhNc",
+			"https://www.youtube.com/watch?v=NBrO7a3HKyk"
 		]
 		rand(1..3).times do
 			video = Video.create(

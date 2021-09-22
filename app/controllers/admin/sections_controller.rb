@@ -2,7 +2,7 @@ class Admin::SectionsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
   before_action :find_admin_course
-  before_action :set_admin_section, only: %i[ show edit update destroy ]
+  before_action :set_admin_section, only: %i[ show edit update destroy edit_content]
 
   # GET /admin/sections or /admin/sections.json
   def index
@@ -22,17 +22,20 @@ class Admin::SectionsController < ApplicationController
       if content.contentable_type == "Video"
         video = Video.find(content.contentable_id)
         content_obj = {
+            "id": content.id,
             "kind": content.contentable_type,
             "name": video.name,
             "title": video.title,
             "url": video.url,
             "embed_url": video.embed_url,
             "thumbnail_medium": video.thumbnail_medium,
-            "duration": video.duration
+            "duration": video.duration,
+            "video": video
         }
       elsif content.contentable_type == "Powerpoint"
         ppt = Powerpoint.find(content.contentable_id)
         content_obj = {
+            "id": content.id,
             "kind": content.contentable_type,
             "name": ppt.name,
             "url": ppt.url
@@ -86,6 +89,39 @@ class Admin::SectionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_school_course_sections_url(@admin_school,@admin_course), notice: "Section was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  # def show_content
+  #   content = Content.find(params[:content_id])
+  #   @content_item = content.contentable
+  #   @content_item_class_name = content.contentable.class.name
+  # end
+
+  def edit_content
+    video = Video.find(params[:video_id])
+    url = params[:url]
+
+    video_info = VideoInfo.new(url)
+    if video_info.provider == "YouTube"
+      url = "https://www.youtube.com/watch?v=" + video_info.video_id
+    end
+
+    video.update(
+      :url => url,
+      :is_available => video_info.available? ,
+      :provider => video_info.provider,
+      :video_id => video_info.video_id,
+      :title => video_info.title,
+      :duration => video_info.duration,
+      :thumbnail_small => video_info.thumbnail_small,
+      :thumbnail_medium => video_info.thumbnail_medium,
+      :thumbnail_large => video_info.thumbnail_large,
+      :embed_url => video_info.embed_url,
+      :embed_code => video_info.embed_code
+    )
+    respond_to do |format|
+      format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
     end
   end
 

@@ -1,0 +1,15 @@
+<h1>show_content</h1>
+
+<% if @content_item_class_name == "Video"%>
+    <h3>Video</h3>
+    <li>
+        <%= @content_item.name%>
+    </li>
+    <li>
+        <%= @content_item.url%>
+    </li>
+<%end%>
+
+<% if @content_item_class_name=="Powerpoint" %>
+    <h3>PPT</h3>
+<%end%>

@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     resources :schools do
       resources :classrooms
       resources :courses do
-        resources :sections
+        resources :sections do
+          post :edit_content, on: :member
+        end
       end
     end
  end
