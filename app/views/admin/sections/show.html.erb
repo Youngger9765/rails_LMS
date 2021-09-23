@@ -8,20 +8,18 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Content Kind</th>
+            <th scope="col">position</th>
+            <th scope="col">kind</th>
             <th scope="col">name</th>
             <th scope="col">url</th>
-            <th scope="col">show</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Show/Delete</th>
         </tr>
     </thead>
     <tbody>
         <% @content_list.each_with_index do |content, index| %>
             <% data_bs_target="Modal-#{index}" %>
             <tr>
-                <th scope="row"><%= index %></th>
+                <th scope="row"><%= content[:position] %></th>
                 <td>
                     <%= content[:kind] %>
                 </td>
@@ -35,10 +33,8 @@
                     <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>">
                         show
                     </div>
-                </td>
-                <td>
-                </td>
-                <td>
+                    <%= link_to 'Destroy' , delete_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section, content_id: content[:id]), 
+                            method: :delete, data: {confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
                 </td>
             </tr>
             <% if content[:kind]=="Video" %>

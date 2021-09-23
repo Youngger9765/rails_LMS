@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :courses do
         resources :sections do
           post :edit_content, on: :member
+          delete :delete_content, on: :member
         end
       end
     end

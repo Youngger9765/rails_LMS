@@ -4,6 +4,11 @@ class Video < ApplicationRecord
     def get_video_info
         url = self.url
         video = VideoInfo.new(url)
+        if video.provider == "YouTube"
+            url = "https://www.youtube.com/watch?v=" + video.video_id
+        end
+        
+        self.url = url
         self.is_available = video.available?
         self.provider = video.provider
         self.video_id = video.video_id

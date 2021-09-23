@@ -2,7 +2,7 @@ class Admin::SectionsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
   before_action :find_admin_course
-  before_action :set_admin_section, only: %i[ show edit update destroy edit_content]
+  before_action :set_admin_section, only: %i[ show edit update destroy edit_content delete_content]
 
   # GET /admin/sections or /admin/sections.json
   def index
@@ -23,6 +23,7 @@ class Admin::SectionsController < ApplicationController
         video = Video.find(content.contentable_id)
         content_obj = {
             "id": content.id,
+            "position": content.position,
             "kind": content.contentable_type,
             "name": video.name,
             "title": video.title,
@@ -30,12 +31,13 @@ class Admin::SectionsController < ApplicationController
             "embed_url": video.embed_url,
             "thumbnail_medium": video.thumbnail_medium,
             "duration": video.duration,
-            "video": video
+            "video": video,
         }
       elsif content.contentable_type == "Powerpoint"
         ppt = Powerpoint.find(content.contentable_id)
         content_obj = {
             "id": content.id,
+            "position": content.position,
             "kind": content.contentable_type,
             "name": ppt.name,
             "url": ppt.url
@@ -101,25 +103,16 @@ class Admin::SectionsController < ApplicationController
   def edit_content
     video = Video.find(params[:video_id])
     url = params[:url]
-
-    video_info = VideoInfo.new(url)
-    if video_info.provider == "YouTube"
-      url = "https://www.youtube.com/watch?v=" + video_info.video_id
+    video.url = url
+    video.get_video_info()
+    respond_to do |format|
+      format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
     end
+  end
 
-    video.update(
-      :url => url,
-      :is_available => video_info.available? ,
-      :provider => video_info.provider,
-      :video_id => video_info.video_id,
-      :title => video_info.title,
-      :duration => video_info.duration,
-      :thumbnail_small => video_info.thumbnail_small,
-      :thumbnail_medium => video_info.thumbnail_medium,
-      :thumbnail_large => video_info.thumbnail_large,
-      :embed_url => video_info.embed_url,
-      :embed_code => video_info.embed_code
-    )
+  def delete_content
+    content = Content.find(params[:content_id])
+    content.destroy
     respond_to do |format|
       format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
     end
