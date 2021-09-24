@@ -40,7 +40,8 @@ class Admin::SectionsController < ApplicationController
             "position": content.position,
             "kind": content.contentable_type,
             "name": ppt.name,
-            "url": ppt.url
+            "url": ppt.url,
+            "ppt": ppt,
         }
       end
       @content_list << content_obj
@@ -101,10 +102,24 @@ class Admin::SectionsController < ApplicationController
   # end
 
   def edit_content
-    video = Video.find(params[:video_id])
-    url = params[:url]
-    video.url = url
-    video.get_video_info()
+    content_kind = params[:content_kind]
+    if content_kind == "Video"
+      video = Video.find(params[:video_id])
+      url = params[:url]
+      video.url = url
+      video.get_video_info()
+    elsif content_kind == "Powerpoint"
+      ppt = Powerpoint.find(params[:ppt_id])
+      url_input = params[:url]
+      ppt.update_embed_url(url_input)
+      # re = /(https:.*\/embed)/
+      # re.match(url_input)
+      # url = $1
+      
+      # ppt.url = url
+      # ppt.save
+    end
+    
     respond_to do |format|
       format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
     end

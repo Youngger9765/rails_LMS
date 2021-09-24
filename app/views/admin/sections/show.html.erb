@@ -42,7 +42,18 @@
                     :data_bs_target => data_bs_target,
                     :embed_url => content[:embed_url],
                     :title => content[:title],
-                    :video => content[:video]
+                    :video => content[:video],
+                    :kind => content[:kind]
+                    }
+                %>
+            <% end %>
+            <% if content[:kind]=="Powerpoint" %>
+                <%= render :partial=> 'ppt_modal', :locals => {
+                    :data_bs_target => data_bs_target,
+                    :embed_url => content[:url],
+                    :title => content[:title],
+                    :ppt => content[:ppt],
+                    :kind => content[:kind]
                     }
                 %>
             <% end %>
