@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_175329) do
+ActiveRecord::Schema.define(version: 2021_09_24_234429) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,16 @@ ActiveRecord::Schema.define(version: 2021_09_07_175329) do
     t.index ["school_id"], name: "index_courses_on_school_id"
   end
 
+  create_table "exercises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "cover_range"
+    t.boolean "is_random"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cover_range"], name: "index_exercises_on_cover_range"
+    t.index ["name"], name: "index_exercises_on_name"
+  end
+
   create_table "identities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "provider"
@@ -132,6 +142,19 @@ ActiveRecord::Schema.define(version: 2021_09_07_175329) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quizzes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "cover_range"
+    t.string "text"
+    t.string "text_url"
+    t.string "answers"
+    t.string "correct_answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cover_range"], name: "index_quizzes_on_cover_range"
+    t.index ["name"], name: "index_quizzes_on_name"
   end
 
   create_table "schools", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

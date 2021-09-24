@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :quiz do
+    
+  end
+
+  factory :exercise do
+    
+  end
+
   factory :admin_section, class: 'Admin::Section' do
     
   end
