@@ -179,10 +179,16 @@ Course.all.each do |course|
 				:contentable => video
 			)
 		end
+		ppt_url_list = [
+			"https://docs.google.com/presentation/d/e/2PACX-1vTdP7L0vfEm5KgyLbK-PhA6hRipDvfoXf0UJOia9aLEtSzND9v8mfWj88l4MOxb91iGx3epTiQ-DTN5/embed",
+			"https://docs.google.com/presentation/d/e/2PACX-1vTE_Oe6usoeVdmWHNNvcxjM9rR_MivQKzmoZUNW-7Zkc4L2uNvBkrahBVejzy1g3J0napSxHMof3PMk/embed"
+		]
+
+
 		rand(1..3).times do
 			ppt = Powerpoint.create(
 				name: Faker::Team.name,
-				url: Faker::Internet.url,
+				url: ppt_url_list.sample,
 			)
 			section.contents.create(
 				:contentable => ppt

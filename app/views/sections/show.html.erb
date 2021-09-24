@@ -53,6 +53,14 @@
                         }
                     %>
                 <% end %>
+                <% if content[:kind]=="Powerpoint" %>
+                    <%= render :partial=> 'ppt_modal', :locals => {
+                        :data_bs_target => data_bs_target,
+                        :embed_url => content[:url],
+                        :title => content[:title]
+                        }
+                        %>
+                <% end %>
                 
             </div>
             
