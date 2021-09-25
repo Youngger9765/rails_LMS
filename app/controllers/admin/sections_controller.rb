@@ -40,8 +40,20 @@ class Admin::SectionsController < ApplicationController
             "position": content.position,
             "kind": content.contentable_type,
             "name": ppt.name,
+            "title": ppt.name,
             "url": ppt.url,
             "ppt": ppt,
+        }
+      elsif content.contentable_type == "Exercise"
+        ex = Exercise.find(content.contentable_id)
+        content_obj = {
+            "id": content.id,
+            "position": content.position,
+            "kind": content.contentable_type,
+            "name": ex.name,
+            "title": ex.name,
+            "cover_range": ex.cover_range,
+            "ex": ex
         }
       end
       @content_list << content_obj

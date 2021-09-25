@@ -57,6 +57,15 @@
                     }
                 %>
             <% end %>
+            <% if content[:kind]=="Exercise" %>
+                <%= render :partial=> 'exercise_modal', :locals => {
+                    :data_bs_target => data_bs_target,
+                    :title => content[:title],
+                    :ppt => content[:ex],
+                    :kind => content[:kind]
+                    }
+                %>
+            <% end %>
         <%end%>
     </tbody>
     
