@@ -158,6 +158,7 @@ Course.all.each do |course|
 		)
 
 		# Content maker
+		puts("    Sections/Content Video seed is creating")
 		videos_url_list = [
 			"https://www.youtube.com/watch?v=U8stOjNfiM0",
 			"https://www.youtube.com/watch?v=zKSD68Xnfhc",
@@ -179,12 +180,12 @@ Course.all.each do |course|
 				:contentable => video
 			)
 		end
+
+		puts("    Sections/Content Powerpoint seed is creating")
 		ppt_url_list = [
 			"https://docs.google.com/presentation/d/e/2PACX-1vTdP7L0vfEm5KgyLbK-PhA6hRipDvfoXf0UJOia9aLEtSzND9v8mfWj88l4MOxb91iGx3epTiQ-DTN5/embed",
 			"https://docs.google.com/presentation/d/e/2PACX-1vTE_Oe6usoeVdmWHNNvcxjM9rR_MivQKzmoZUNW-7Zkc4L2uNvBkrahBVejzy1g3J0napSxHMof3PMk/embed"
 		]
-
-
 		rand(1..3).times do
 			ppt = Powerpoint.create(
 				name: Faker::Team.name,
@@ -192,6 +193,32 @@ Course.all.each do |course|
 			)
 			section.contents.create(
 				:contentable => ppt
+			)
+		end
+
+		puts("    Sections/Content Exercise-Quiz seed is creating")
+		quiz_url_list = [
+			"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/embed",
+			"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/embed"
+		]
+		cover_range_list = [
+			"a1","a2","a3"
+		]
+		rand(1..3).times do
+			ex = Exercise.create(
+				name: Faker::Team.name,
+				cover_range: cover_range_list.sample
+			)
+			rand(1..10).times do
+				quiz = Quiz.create(
+					name: Faker::Team.name,
+					text: Faker::Lorem.paragraph,
+					text_url: quiz_url_list.sample,
+					cover_range: ex.cover_range
+				)
+			end
+			section.contents.create(
+				:contentable => ex
 			)
 		end
 		
