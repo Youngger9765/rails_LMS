@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         resources :sections do
           post :edit_content, on: :member
           delete :delete_content, on: :member
+          get :quiz_content, on: :member
         end
       end
     end

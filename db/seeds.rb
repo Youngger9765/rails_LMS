@@ -223,8 +223,8 @@ end
 
 puts("Sections/Content Quiz seed is creating")
 quiz_url_list = [
-	"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/preview?rm=minimal",
-	"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/preview?rm=minimal"
+	"https://docs.google.com/presentation/d/113m_64qKKI5xw9cJkogEB-OiUpDOTRZIgVHfOGd31y4/preview?rm=minimal",
+	"https://docs.google.com/presentation/d/1zHIAvxP6d4NfEct73nGDOzCOSSc0G5_w0ESaPDZzVI8/preview?rm=minimal"
 ]
 cover_range_list = [
 	"a1","a2","a3"

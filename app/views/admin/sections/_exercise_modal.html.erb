@@ -5,18 +5,61 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
                     <%=title%>
+                    <p id='quiz_id'>
+                        quiz_id: <%= quiz_init.id%>
+                    </p>
                 </h5>
+                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body responsive-google-slides">
-                <!-- TODO: quiz ajax -->
-                <%= render :partial=> 'quiz', :locals => {}
-                %>
+                <iframe src="<%=quiz_init.text_url%>" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+                    webkitallowfullscreen="true"></iframe>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="quiz_summit">Next</button>
+                <button type="button" class="btn btn-primary" modal_id="<%=data_bs_target%>" id="quiz_next_step_<%=data_bs_target%>">Next</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+    });
+    $('#quiz_next_step_<%=data_bs_target%>').click(function () {
+        console.log('NEXT!');
+        var quizzes_ids = <%= quizzes_ids %>;
+        var quiz_id = quizzes_ids[Math.floor(Math.random() * quizzes_ids.length)];
+        console.log(quiz_id);
+        modal_id = $(this).attr("modal_id");
+        get_quiz_content(quiz_id, modal_id);
+        
+    });
+    function get_quiz_content(quiz_id, modal_id) {
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            url: "<%= quiz_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section)%>",
+            data: { "quiz_id": quiz_id },
+            success: function (quiz) {
+                console.log(quiz);
+                $quiz_id = $('#' + modal_id + ' #quiz_id');
+                text = 'quiz_id:' + quiz.id;
+                $quiz_id.text(text);
+                iframeName = '#' + modal_id + ' iframe';
+                url = quiz.text_url;
+                loadIframe(iframeName, url);
+            }
+        });
+    }
+    function loadIframe(iframeName, url) {
+        var $iframe = $(iframeName);
+        if ($iframe.length) {
+            $iframe.attr('src', url);
+            return false;
+        }
+        return true;
+    }
+</script>

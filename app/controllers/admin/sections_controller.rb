@@ -46,6 +46,10 @@ class Admin::SectionsController < ApplicationController
         }
       elsif content.contentable_type == "Exercise"
         ex = Exercise.find(content.contentable_id)
+        cr = ex.cover_range
+        quizzes = Quiz.where(:cover_range => cr)
+        quiz_init =  quizzes.sample
+        quizzes_ids = quizzes.ids
         content_obj = {
             "id": content.id,
             "position": content.position,
@@ -53,10 +57,10 @@ class Admin::SectionsController < ApplicationController
             "name": ex.name,
             "title": ex.name,
             "cover_range": ex.cover_range,
-            "ex": ex
+            "ex": ex,
+            "quiz_init": quiz_init,
+            "quizzes_ids": quizzes_ids
         }
-        cr = ex.cover_range
-        @quizzes = Quiz.where(:cover_range => cr)
       end
       @content_list << content_obj
     end
@@ -144,6 +148,15 @@ class Admin::SectionsController < ApplicationController
     content.destroy
     respond_to do |format|
       format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
+    end
+  end
+
+  def quiz_content
+    quiz_id = params[:quiz_id]
+    @quiz = Quiz.find(quiz_id)
+    respond_to do |format|
+      format.json { render json: @quiz.to_json, status: 200 }
+      format.html
     end
   end
 
