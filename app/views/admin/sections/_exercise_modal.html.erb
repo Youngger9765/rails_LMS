@@ -8,12 +8,14 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body responsive-google-slides">
                 <!-- TODO: quiz ajax -->
+                <%= render :partial=> 'quiz', :locals => {}
+                %>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="quiz_summit">Next</button>
             </div>
         </div>
     </div>

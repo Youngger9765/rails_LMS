@@ -8,8 +8,8 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <iframe src="<%=embed_url%>" frameborder="0" width="100%" height="500" allowfullscreen="true"
+            <div class="modal-body responsive-google-slides">
+                <iframe src="<%=embed_url%>" frameborder="0" allowfullscreen="true"
                     mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
             </div>
             <%= form_with url: edit_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section) do |f| %>

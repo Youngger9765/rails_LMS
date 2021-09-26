@@ -196,11 +196,8 @@ Course.all.each do |course|
 			)
 		end
 
-		puts("    Sections/Content Exercise-Quiz seed is creating")
-		quiz_url_list = [
-			"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/preview?rm=minimal",
-			"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/preview?rm=minimal"
-		]
+		puts("    Sections/Content Exercise seed is creating")
+		
 		cover_range_list = [
 			"a1","a2","a3"
 		]
@@ -209,14 +206,6 @@ Course.all.each do |course|
 				name: Faker::Team.name,
 				cover_range: cover_range_list.sample
 			)
-			rand(5..10).times do
-				quiz = Quiz.create(
-					name: Faker::Team.name,
-					text: Faker::Lorem.paragraph,
-					text_url: quiz_url_list.sample,
-					cover_range: ex.cover_range
-				)
-			end
 			section.contents.create(
 				:contentable => ex
 			)
@@ -228,5 +217,25 @@ Course.all.each do |course|
 			content.save!
 			position +=1
 		end
+	end
+	
+end
+
+puts("Sections/Content Quiz seed is creating")
+quiz_url_list = [
+	"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/preview?rm=minimal",
+	"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/preview?rm=minimal"
+]
+cover_range_list = [
+	"a1","a2","a3"
+]
+cover_range_list.each do |cover_range| 
+	rand(5..10).times do
+		quiz = Quiz.create(
+			name: Faker::Team.name,
+			text: Faker::Lorem.paragraph,
+			text_url: quiz_url_list.sample,
+			cover_range: cover_range
+		)
 	end
 end

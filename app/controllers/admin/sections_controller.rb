@@ -55,6 +55,8 @@ class Admin::SectionsController < ApplicationController
             "cover_range": ex.cover_range,
             "ex": ex
         }
+        cr = ex.cover_range
+        @quizzes = Quiz.where(:cover_range => cr)
       end
       @content_list << content_obj
     end
