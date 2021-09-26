@@ -19,7 +19,7 @@ end
 
 # School
 puts("School seed is creating")
-10.times do
+5.times do
 	school = School.new(
 		name: Faker::Team.name,
 		description: Faker::Team.sport,
@@ -198,8 +198,8 @@ Course.all.each do |course|
 
 		puts("    Sections/Content Exercise-Quiz seed is creating")
 		quiz_url_list = [
-			"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/embed",
-			"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/embed"
+			"https://docs.google.com/presentation/d/e/2PACX-1vRIkN2R33vNl28gK98ec_u6XAR1vB9zZkmrXUC5iPS4qZfS0H5Ioi1_B617EU4ocutVHmzsewpyReK2/preview?rm=minimal",
+			"https://docs.google.com/presentation/d/e/2PACX-1vRl_YqfDETlJMvFNVkYwi-hfs3B2XbfXfKhHv9PjmNPBXTIaSnd4WJuL7INqzkqHeC_vMsgqlpE96WR/preview?rm=minimal"
 		]
 		cover_range_list = [
 			"a1","a2","a3"
@@ -209,7 +209,7 @@ Course.all.each do |course|
 				name: Faker::Team.name,
 				cover_range: cover_range_list.sample
 			)
-			rand(1..10).times do
+			rand(5..10).times do
 				quiz = Quiz.create(
 					name: Faker::Team.name,
 					text: Faker::Lorem.paragraph,
