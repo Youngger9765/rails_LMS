@@ -45,6 +45,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 gem "font-awesome-rails"
 gem 'foreman', '~> 0.86.0'
+gem 'acts_as_list'
 
 gem 'will_paginate-bootstrap4'
 

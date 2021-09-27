@@ -29,6 +29,11 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :contents, except: [:show] do
+      collection do
+        put :sort  # PUT admin/contents/sort
+      end
+    end
  end
 
 end
