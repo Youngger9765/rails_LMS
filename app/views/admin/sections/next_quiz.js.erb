@@ -1,0 +1,30 @@
+console.log('NEXT!');
+var modal_id = "<%=j @modal_id%>"
+var quiz_id = "<%=j @quiz.id%>"
+var quiz_text = "<%=j @quiz.text%>"
+var quiz_text_url = "<%=j @quiz.text_url%>"
+
+// btn quiz id
+$quiz_next_btn = $("#quiz_next_step_" + modal_id);
+$quiz_summit_btn = $('#quiz_summit_' + modal_id)
+$quiz_next_btn.attr("data-quiz_id",quiz_id);
+$quiz_summit_btn.attr("data-quiz_id",quiz_id);
+console.log($quiz_next_btn.attr("data-quiz_id"))
+
+// title quiz id
+$quiz_id = $('#' + modal_id + ' #quiz_id');
+$quiz_id.text('quiz_id:' + quiz_id);
+
+// Quesution
+$quiz_text = $('#' + modal_id + ' #quiz_text');
+$quiz_text.text(quiz_text);
+
+// iframe
+iframeName = '#' + modal_id + ' iframe';
+loadIframe(iframeName, quiz_text_url);
+
+// reset
+hide_quiz_next_step(modal_id);
+show_quiz_summit(modal_id);
+reset_radio_btns();
+document.getElementById("form_msg_<%=j @modal_id%>").textContent = "";

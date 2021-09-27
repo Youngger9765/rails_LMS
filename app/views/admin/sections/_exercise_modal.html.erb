@@ -26,10 +26,14 @@
                     <%= f.label :summit_ans, 'A'%>
                     <%= f.radio_button :summit_ans, 'B' %>
                     <%= f.label :summit_ans, 'B'%>
+                    <%= f.radio_button :summit_ans, 'C' %>
+                    <%= f.label :summit_ans, 'C' %>
+                    <%= f.radio_button :summit_ans, 'D' %>
+                    <%= f.label :summit_ans, 'D' %>
                     <%= hidden_field_tag "quiz_id" , quiz_init.id %>
                     <%= hidden_field_tag "modal_id" , data_bs_target %>
                     <hr>
-                    <div id="form_msg"></div>
+                    <div id="form_msg_<%=data_bs_target%>"></div>
                     <%= f.submit '送出答案', 
                         :class =>"btn btn-primary", 
                         :id => "quiz_summit_#{data_bs_target}",
@@ -37,7 +41,19 @@
                         "data-quiz_id": "#{quiz_init.id}"
                     %>
                 <% end %>
-                <button type="button" class="btn btn-success" data-modal_id="<%=data_bs_target%>" data-quiz_id="<%=quiz_init.id%>" id="quiz_next_step_<%=data_bs_target%>">Next</button>
+                <%= link_to "下一題", 
+                    quiz_content_admin_school_course_section_path(
+                        @admin_school, @admin_course, @admin_section, 
+                        :quiz_id => quiz_init.id,
+                        :ex_id => ex.id,
+                        :modal_id => data_bs_target
+                    ),
+                    :remote => true,
+                    :class => "btn btn-success",
+                    "data-modal_id": "#{data_bs_target}",
+                    "data-quiz_id": "#{quiz_init.id}",
+                    :id => "quiz_next_step_#{data_bs_target}"
+                %>
             </div>
         </div>
     </div>
@@ -65,50 +81,6 @@
         $quiz_summit = $('#quiz_summit_' + modal_id);
         $quiz_summit.hide();
     };
-
-
-    $('#quiz_next_step_<%=data_bs_target%>').click(function () {
-        console.log('NEXT!');
-        var quizzes_ids = <%= quizzes_ids %>;
-        var next_quiz_id = quizzes_ids[Math.floor(Math.random() * quizzes_ids.length)];
-        console.log(next_quiz_id);
-        modal_id = $(this).attr("data-modal_id");
-        next_quiz_content(next_quiz_id, modal_id);
-    });
-    function next_quiz_content(quiz_id, modal_id) {
-        $.ajax({
-            type: 'get',
-            dataType: 'json',
-            url: "<%= quiz_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section)%>",
-            data: { "quiz_id": quiz_id },
-            success: function (quiz) {
-                console.log(quiz);
-                // btn quiz id
-                $quiz_next_btn = $("#quiz_next_step_" + modal_id);
-                $quiz_summit_btn = $('#quiz_summit_' + modal_id)
-                $quiz_next_btn.attr("data-quiz_id",quiz.id);
-                $quiz_summit_btn.attr("data-quiz_id",quiz.id);
-                console.log($quiz_next_btn.attr("data-quiz_id"))
-
-                // title quiz id
-                $quiz_id = $('#' + modal_id + ' #quiz_id');
-                $quiz_id.text('quiz_id:' + quiz.id);
-
-                // Quesution
-                $quiz_text = $('#' + modal_id + ' #quiz_text');
-                $quiz_text.text(quiz.text);
-
-                // iframe
-                iframeName = '#' + modal_id + ' iframe';
-                url = quiz.text_url;
-                loadIframe(iframeName, url);
-
-                // btn reset
-                hide_quiz_next_step(modal_id);
-                show_quiz_summit(modal_id)
-            }
-        });
-    }
     function loadIframe(iframeName, url) {
         var $iframe = $(iframeName);
         if ($iframe.length) {
@@ -116,5 +88,8 @@
             return false;
         }
         return true;
-    }
+    };
+    function reset_radio_btns(){
+        $('input[type="radio"]').prop('checked', false);
+    };
 </script>

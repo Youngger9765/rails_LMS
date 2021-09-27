@@ -47,9 +47,7 @@ class Admin::SectionsController < ApplicationController
       elsif content.contentable_type == "Exercise"
         ex = Exercise.find(content.contentable_id)
         cr = ex.cover_range
-        quizzes = Quiz.where(:cover_range => cr)
-        quiz_init =  quizzes.sample
-        quizzes_ids = quizzes.ids
+        quiz_init = Quiz.where(:cover_range => cr).sample
         content_obj = {
             "id": content.id,
             "position": content.position,
@@ -59,7 +57,6 @@ class Admin::SectionsController < ApplicationController
             "cover_range": ex.cover_range,
             "ex": ex,
             "quiz_init": quiz_init,
-            "quizzes_ids": quizzes_ids
         }
       end
       @content_list << content_obj
@@ -130,12 +127,6 @@ class Admin::SectionsController < ApplicationController
       ppt = Powerpoint.find(params[:ppt_id])
       url_input = params[:url]
       ppt.update_embed_url(url_input)
-      # re = /(https:.*\/embed)/
-      # re.match(url_input)
-      # url = $1
-      
-      # ppt.url = url
-      # ppt.save
     end
     
     respond_to do |format|
@@ -152,11 +143,15 @@ class Admin::SectionsController < ApplicationController
   end
 
   def quiz_content
-    quiz_id = params[:quiz_id]
-    @quiz = Quiz.find(quiz_id)
+    @modal_id = params[:modal_id]
+    @ex = Exercise.find(params[:ex_id])
+    cover_range = @ex.cover_range
+    @quiz = Quiz.where(:cover_range => cover_range).sample
     respond_to do |format|
-      format.json { render json: @quiz.to_json, status: 200 }
-      format.html
+      format.js {
+        render  :template => "admin/sections/next_quiz.js.erb",
+        :layout => false
+      }
     end
   end
 
@@ -166,29 +161,15 @@ class Admin::SectionsController < ApplicationController
     @quiz = Quiz.find(@quiz_id)
     correct_answer = @quiz.correct_answer
     summit_ans = params[:summit_ans]
+    puts("!!!!!!!!")
     
-    if summit_ans == correct_answer
-      resp = {"is_correct": true}
-    else
-      resp = {"is_correct": false}
-    end
-    
-    # respond_to do |format|
-    #   format.json { render json: resp, status: 200 }
-    #   format.html
-    # end
-    if summit_ans == correct_answer
-      respond_to do |format|
-        # Return Javascript back to our contact page for user feedback
+    respond_to do |format|
+      if summit_ans == correct_answer
         format.js {
-          # We'll be creating these ERB files next
           render  :template => "admin/sections/quiz_summit.success.js.erb",
           :layout => false
         }
-      end
-    else
-      respond_to do |format|
-        # If sending the email fails, let the user know by returning specific code
+      else
         format.js {
           render  :template => "admin/sections/quiz_summit.error.js.erb",
           :layout => false
