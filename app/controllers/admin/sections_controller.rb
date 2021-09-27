@@ -160,6 +160,24 @@ class Admin::SectionsController < ApplicationController
     end
   end
 
+  def summit_quiz
+    quiz_id = params[:quiz_id]
+    @quiz = Quiz.find(quiz_id)
+    correct_answer = @quiz.correct_answer
+    summit_ans = params[:summit_ans]
+    
+    if summit_ans == correct_answer
+      resp = {"is_correct": true}
+    else
+      resp = {"is_correct": false}
+    end
+    
+    respond_to do |format|
+      format.json { render json: resp, status: 200 }
+      format.html
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_section

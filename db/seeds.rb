@@ -235,7 +235,8 @@ cover_range_list.each do |cover_range|
 			name: Faker::Team.name,
 			text: Faker::Lorem.paragraph,
 			text_url: quiz_url_list.sample,
-			cover_range: cover_range
+			cover_range: cover_range,
+			correct_answer: ["A","B","C","D"][0]
 		)
 	end
 end

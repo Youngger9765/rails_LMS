@@ -8,6 +8,10 @@
                     <p id='quiz_id'>
                         quiz_id: <%= quiz_init.id%>
                     </p>
+                    <h5>Question:</h5>
+                    <p id="quiz_text">
+                        <%= quiz_init.text%>
+                    </p>
                 </h5>
                 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,9 +20,17 @@
                 <iframe src="<%=quiz_init.text_url%>" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
                     webkitallowfullscreen="true"></iframe>
             </div>
-
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" modal_id="<%=data_bs_target%>" id="quiz_next_step_<%=data_bs_target%>">Next</button>
+                <%= form_with url: summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section) do |f| %>
+                    <%= f.radio_button :summit_ans, 'A' %>
+                    <%= f.label :summit_ans, 'A'%>
+                    <%= f.radio_button :summit_ans, 'B' %>
+                    <%= f.label :summit_ans, 'B'%>
+                    <%= hidden_field_tag "quiz_id" , quiz_init.id %>
+                    <%= f.submit %>
+                <% end %>
+                <button type="button" class="btn btn-primary" data-modal_id="<%=data_bs_target%>" data-quiz_id="<%=quiz_init.id%>" id="quiz_summit_<%=data_bs_target%>">Summit Answer</button>
+                <button type="button" class="btn btn-success" data-modal_id="<%=data_bs_target%>" data-quiz_id="<%=quiz_init.id%>" id="quiz_next_step_<%=data_bs_target%>">Next</button>
             </div>
         </div>
     </div>
@@ -27,17 +39,63 @@
 <script>
     $(document).ready(function () {
         console.log("ready!");
+        modal_id = "<%=data_bs_target %>";
+        hide_quiz_next_step(modal_id);
     });
+
+    $('#quiz_summit_<%=data_bs_target%>').click(function () {
+        console.log('Summit!');
+        modal_id = $(this).attr("data-modal_id");
+        quiz_id = $(this).attr("data-quiz_id");
+
+        summit_ans = "A";
+        // summit_quiz(quiz_id, modal_id, summit_ans);
+
+
+
+    });
+    function summit_quiz(quiz_id, modal_id, summit_ans) {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: "<%= summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section)%>",
+            data: { "quiz_id": quiz_id , "summit_ans": summit_ans},
+            success: function (data) {
+                console.log(data);
+                if (data.is_correct) {
+                    show_quiz_next_step(modal_id);
+                    hide_quiz_summit(modal_id);
+                } 
+            }
+        });
+    };
+    function show_quiz_next_step(modal_id) {
+        $quiz_next_step = $('#quiz_next_step_' + modal_id);
+        $quiz_next_step.show();
+    };
+    function show_quiz_summit(modal_id) {
+        $quiz_summit = $('#quiz_summit_' + modal_id);
+        $quiz_summit.show();
+    };
+    function hide_quiz_next_step(modal_id) {
+        $quiz_next_step = $('#quiz_next_step_' + modal_id);
+        $quiz_next_step.hide();
+    };
+    function hide_quiz_summit(modal_id) {
+        $quiz_summit = $('#quiz_summit_' + modal_id);
+        $quiz_summit.hide();
+    };
+
+
     $('#quiz_next_step_<%=data_bs_target%>').click(function () {
         console.log('NEXT!');
         var quizzes_ids = <%= quizzes_ids %>;
-        var quiz_id = quizzes_ids[Math.floor(Math.random() * quizzes_ids.length)];
-        console.log(quiz_id);
-        modal_id = $(this).attr("modal_id");
-        get_quiz_content(quiz_id, modal_id);
-        
+        var next_quiz_id = quizzes_ids[Math.floor(Math.random() * quizzes_ids.length)];
+        console.log(next_quiz_id);
+        modal_id = $(this).attr("data-modal_id");
+        next_quiz_content(next_quiz_id, modal_id);
     });
-    function get_quiz_content(quiz_id, modal_id) {
+    function next_quiz_content(quiz_id, modal_id) {
         $.ajax({
             type: 'get',
             dataType: 'json',
@@ -45,12 +103,29 @@
             data: { "quiz_id": quiz_id },
             success: function (quiz) {
                 console.log(quiz);
+                // btn quiz id
+                $quiz_next_btn = $("#quiz_next_step_" + modal_id);
+                $quiz_summit_btn = $('#quiz_summit_' + modal_id)
+                $quiz_next_btn.attr("data-quiz_id",quiz.id);
+                $quiz_summit_btn.attr("data-quiz_id",quiz.id);
+                console.log($quiz_next_btn.attr("data-quiz_id"))
+
+                // title quiz id
                 $quiz_id = $('#' + modal_id + ' #quiz_id');
-                text = 'quiz_id:' + quiz.id;
-                $quiz_id.text(text);
+                $quiz_id.text('quiz_id:' + quiz.id);
+
+                // Quesution
+                $quiz_text = $('#' + modal_id + ' #quiz_text');
+                $quiz_text.text(quiz.text);
+
+                // iframe
                 iframeName = '#' + modal_id + ' iframe';
                 url = quiz.text_url;
                 loadIframe(iframeName, url);
+
+                // btn reset
+                hide_quiz_next_step(modal_id);
+                show_quiz_summit(modal_id)
             }
         });
     }
