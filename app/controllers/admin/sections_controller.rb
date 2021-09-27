@@ -161,8 +161,9 @@ class Admin::SectionsController < ApplicationController
   end
 
   def summit_quiz
-    quiz_id = params[:quiz_id]
-    @quiz = Quiz.find(quiz_id)
+    @quiz_id = params[:quiz_id]
+    @modal_id = params[:modal_id]
+    @quiz = Quiz.find(@quiz_id)
     correct_answer = @quiz.correct_answer
     summit_ans = params[:summit_ans]
     
@@ -172,9 +173,27 @@ class Admin::SectionsController < ApplicationController
       resp = {"is_correct": false}
     end
     
-    respond_to do |format|
-      format.json { render json: resp, status: 200 }
-      format.html
+    # respond_to do |format|
+    #   format.json { render json: resp, status: 200 }
+    #   format.html
+    # end
+    if summit_ans == correct_answer
+      respond_to do |format|
+        # Return Javascript back to our contact page for user feedback
+        format.js {
+          # We'll be creating these ERB files next
+          render  :template => "admin/sections/quiz_summit.success.js.erb",
+          :layout => false
+        }
+      end
+    else
+      respond_to do |format|
+        # If sending the email fails, let the user know by returning specific code
+        format.js {
+          render  :template => "admin/sections/quiz_summit.error.js.erb",
+          :layout => false
+        }
+      end
     end
   end
 

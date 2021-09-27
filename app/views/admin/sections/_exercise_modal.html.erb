@@ -21,15 +21,22 @@
                     webkitallowfullscreen="true"></iframe>
             </div>
             <div class="modal-footer">
-                <%= form_with url: summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section) do |f| %>
+                <%= form_with url: summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section), method: :post, local: false do |f| %>
                     <%= f.radio_button :summit_ans, 'A' %>
                     <%= f.label :summit_ans, 'A'%>
                     <%= f.radio_button :summit_ans, 'B' %>
                     <%= f.label :summit_ans, 'B'%>
                     <%= hidden_field_tag "quiz_id" , quiz_init.id %>
-                    <%= f.submit %>
+                    <%= hidden_field_tag "modal_id" , data_bs_target %>
+                    <hr>
+                    <div id="form_msg"></div>
+                    <%= f.submit '送出答案', 
+                        :class =>"btn btn-primary", 
+                        :id => "quiz_summit_#{data_bs_target}",
+                        "data-modal_id": "#{data_bs_target}",
+                        "data-quiz_id": "#{quiz_init.id}"
+                    %>
                 <% end %>
-                <button type="button" class="btn btn-primary" data-modal_id="<%=data_bs_target%>" data-quiz_id="<%=quiz_init.id%>" id="quiz_summit_<%=data_bs_target%>">Summit Answer</button>
                 <button type="button" class="btn btn-success" data-modal_id="<%=data_bs_target%>" data-quiz_id="<%=quiz_init.id%>" id="quiz_next_step_<%=data_bs_target%>">Next</button>
             </div>
         </div>
@@ -42,33 +49,6 @@
         modal_id = "<%=data_bs_target %>";
         hide_quiz_next_step(modal_id);
     });
-
-    $('#quiz_summit_<%=data_bs_target%>').click(function () {
-        console.log('Summit!');
-        modal_id = $(this).attr("data-modal_id");
-        quiz_id = $(this).attr("data-quiz_id");
-
-        summit_ans = "A";
-        // summit_quiz(quiz_id, modal_id, summit_ans);
-
-
-
-    });
-    function summit_quiz(quiz_id, modal_id, summit_ans) {
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: "<%= summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section)%>",
-            data: { "quiz_id": quiz_id , "summit_ans": summit_ans},
-            success: function (data) {
-                console.log(data);
-                if (data.is_correct) {
-                    show_quiz_next_step(modal_id);
-                    hide_quiz_summit(modal_id);
-                } 
-            }
-        });
-    };
     function show_quiz_next_step(modal_id) {
         $quiz_next_step = $('#quiz_next_step_' + modal_id);
         $quiz_next_step.show();
