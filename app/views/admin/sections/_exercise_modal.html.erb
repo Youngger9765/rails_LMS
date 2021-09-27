@@ -3,24 +3,28 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    <%=title%>
+                <div class="modal-title" id="exampleModalLabel">
+                    <h5><%=title%></h5>
                     <p id='quiz_id'>
                         quiz_id: <%= quiz_init.id%>
                     </p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body responsive-google-slides row">
+                <div class="col-md-5">
                     <h5>Question:</h5>
                     <p id="quiz_text">
                         <%= quiz_init.text%>
                     </p>
-                </h5>
-                
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body responsive-google-slides">
-                <iframe src="<%=quiz_init.text_url%>" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
-                    webkitallowfullscreen="true"></iframe>
+                </div>
+                <div class="col-md-7">
+                    <iframe src="<%=quiz_init.text_url%>" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+                        webkitallowfullscreen="true"></iframe>
+                </div>
             </div>
             <div class="modal-footer">
+                <p id="form_msg_<%=data_bs_target%>"></p>
                 <%= form_with url: summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section), method: :post, local: false do |f| %>
                     <%= f.radio_button :summit_ans, 'A' %>
                     <%= f.label :summit_ans, 'A'%>
@@ -32,8 +36,6 @@
                     <%= f.label :summit_ans, 'D' %>
                     <%= hidden_field_tag "quiz_id" , quiz_init.id %>
                     <%= hidden_field_tag "modal_id" , data_bs_target %>
-                    <hr>
-                    <div id="form_msg_<%=data_bs_target%>"></div>
                     <%= f.submit '送出答案', 
                         :class =>"btn btn-primary", 
                         :id => "quiz_summit_#{data_bs_target}",
