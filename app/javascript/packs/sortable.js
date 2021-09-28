@@ -6,13 +6,14 @@ document.addEventListener('turbolinks:load', () => {
   if (el) {
     Sortable.create(el, {
       onEnd: event => {
-        let [model, id] = event.item.dataset.item.split('_');
+        let [model_name, id] = event.item.dataset.item.split('_');
+        let url = '/admin/' + model_name + '/sort';
         let data = new FormData();
         data.append("id", id);
         data.append("form", event.oldIndex);
         data.append("to", event.newIndex);
         Rails.ajax({
-          url: '/admin/contents/sort',
+          url: url,
           type: 'PUT',
           data: data,
           success: function(data) {
@@ -21,7 +22,7 @@ document.addEventListener('turbolinks:load', () => {
           error: function(data) {
             console.log(data);
           }
-        })
+        });
       }
     })
   }

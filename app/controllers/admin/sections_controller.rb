@@ -2,7 +2,7 @@ class Admin::SectionsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
   before_action :find_admin_course
-  before_action :set_admin_section, only: %i[ show edit update destroy edit_content delete_content]
+  before_action :set_admin_section, only: %i[ show edit update destroy edit_content delete_content sort]
 
   # GET /admin/sections or /admin/sections.json
   def index
@@ -21,6 +21,7 @@ class Admin::SectionsController < ApplicationController
     contents.order(:position).each do |content|
       if content.contentable_type == "Video"
         video = Video.find(content.contentable_id)
+
         content_obj = {
             "id": content.id,
             "position": content.position,
@@ -161,7 +162,6 @@ class Admin::SectionsController < ApplicationController
     @quiz = Quiz.find(@quiz_id)
     correct_answer = @quiz.correct_answer
     summit_ans = params[:summit_ans]
-    puts("!!!!!!!!")
     
     respond_to do |format|
       if summit_ans == correct_answer
@@ -176,6 +176,11 @@ class Admin::SectionsController < ApplicationController
         }
       end
     end
+  end
+
+  def sort
+      @admin_section.insert_at(params[:to].to_i + 1)
+      render json: {status: "ok"}
   end
 
   private
@@ -194,10 +199,14 @@ class Admin::SectionsController < ApplicationController
     end
 
     def find_admin_school
+      if (params.has_key?(:school_id))
         @admin_school = Admin::School.find( params[:school_id] )
+      end
     end
 
     def find_admin_course
+      if(params.has_key?(:course_id))
         @admin_course = Course.find( params[:course_id] )
+      end
     end
 end

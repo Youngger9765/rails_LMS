@@ -5,20 +5,20 @@
 
 <h1><%= @admin_section.name%></h1>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">Drag</th>
             <th scope="col">kind</th>
             <th scope="col">name</th>
             <th scope="col">url</th>
-            <th scope="col">Show/Delete</th>
+            <th scope="col">Edit/Delete</th>
         </tr>
     </thead>
     <tbody class="sortable-items">
         <% @content_list.each_with_index do |content, index| %>
             <% data_bs_target="Modal-#{index}" %>
-            <tr class="item" data-item="content_<%=content[:id]%>">
+            <tr class="item" data-item="contents_<%=content[:id]%>">
                 <td scope="row">
                     <i class="fas fa-align-justify"></i>
                 </td>
@@ -33,7 +33,7 @@
                 </td>
                 <td>
                     <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>">
-                        show
+                        Edit
                     </div>
                     <%= link_to 'Destroy' , delete_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section, content_id: content[:id]), 
                             method: :delete, data: {confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
