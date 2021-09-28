@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class=" modal fade" id=<%=data_bs_target%> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class=" modal fade" id=<%=modal_id%> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <p id="form_msg_<%=data_bs_target%>"></p>
+                <p id="form_msg_<%=modal_id%>"></p>
                 <%= form_with url: summit_quiz_admin_school_course_section_path(@admin_school, @admin_course, @admin_section), method: :post, local: false do |f| %>
                     <%= f.radio_button :summit_ans, 'A' %>
                     <%= f.label :summit_ans, 'A'%>
@@ -35,11 +35,11 @@
                     <%= f.radio_button :summit_ans, 'D' %>
                     <%= f.label :summit_ans, 'D' %>
                     <%= hidden_field_tag "quiz_id" , quiz_init.id %>
-                    <%= hidden_field_tag "modal_id" , data_bs_target %>
+                    <%= hidden_field_tag "modal_id" , modal_id %>
                     <%= f.submit '送出答案', 
                         :class =>"btn btn-primary", 
-                        :id => "quiz_summit_#{data_bs_target}",
-                        "data-modal_id": "#{data_bs_target}",
+                        :id => "quiz_summit_#{modal_id}",
+                        "data-modal_id": "#{modal_id}",
                         "data-quiz_id": "#{quiz_init.id}"
                     %>
                 <% end %>
@@ -48,13 +48,13 @@
                         @admin_school, @admin_course, @admin_section, 
                         :quiz_id => quiz_init.id,
                         :ex_id => ex.id,
-                        :modal_id => data_bs_target
+                        :modal_id => modal_id
                     ),
                     :remote => true,
                     :class => "btn btn-success",
-                    "data-modal_id": "#{data_bs_target}",
+                    "data-modal_id": "#{modal_id}",
                     "data-quiz_id": "#{quiz_init.id}",
-                    :id => "quiz_next_step_#{data_bs_target}"
+                    :id => "quiz_next_step_#{modal_id}"
                 %>
             </div>
         </div>
@@ -64,7 +64,7 @@
 <script>
     $(document).ready(function () {
         console.log("ready!");
-        modal_id = "<%=data_bs_target %>";
+        modal_id = "<%=modal_id %>";
         hide_quiz_next_step(modal_id);
     });
     function show_quiz_next_step(modal_id) {

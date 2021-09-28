@@ -17,7 +17,7 @@
     </thead>
     <tbody class="sortable-items">
         <% @content_list.each_with_index do |content, index| %>
-            <% data_bs_target="Modal-#{index}" %>
+            <% modal_id="Modal-#{index}" %>
             <tr class="item" data-item="contents_<%=content[:id]%>">
                 <td scope="row">
                     <i class="fas fa-align-justify"></i>
@@ -32,7 +32,7 @@
                     <%=content[:url]%>
                 </td>
                 <td>
-                    <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>">
+                    <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=modal_id%>">
                         Edit
                     </div>
                     <%= link_to 'Destroy' , delete_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section, content_id: content[:id]), 
@@ -41,7 +41,7 @@
             </tr>
             <% if content[:kind]=="Video" %>
                 <%= render :partial=> 'video_modal', :locals => {
-                    :data_bs_target => data_bs_target,
+                    :modal_id => modal_id,
                     :embed_url => content[:embed_url],
                     :title => content[:title],
                     :video => content[:video],
@@ -51,7 +51,7 @@
             <% end %>
             <% if content[:kind]=="Powerpoint" %>
                 <%= render :partial=> 'ppt_modal', :locals => {
-                    :data_bs_target => data_bs_target,
+                    :modal_id => modal_id,
                     :embed_url => content[:url],
                     :title => content[:title],
                     :ppt => content[:ppt],
@@ -61,7 +61,7 @@
             <% end %>
             <% if content[:kind]=="Exercise" %>
                 <%= render :partial=> 'exercise_modal', :locals => {
-                    :data_bs_target => data_bs_target,
+                    :modal_id => modal_id,
                     :title => content[:title],
                     :ex => content[:ex],
                     :kind => content[:kind],

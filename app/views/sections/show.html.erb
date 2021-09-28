@@ -15,8 +15,8 @@
 <div class="container mt-2">
     <div class="row">
         <% @content_list.each_with_index do |content, index| %>
-            <% data_bs_target="Modal-#{index}" %>
-            <div class="col-md-12 col-sm-12 item mt-2 p-2" data-bs-toggle="modal" data-bs-target="#<%=data_bs_target%>"">
+            <% modal_id="Modal-#{index}" %>
+            <div class="col-md-12 col-sm-12 item mt-2 p-2" data-bs-toggle="modal" data-bs-target="#<%=modal_id%>"">
                 <div class="card item-card card-block">
                     <h3>
                         <%= content[:kind]%>
@@ -47,7 +47,7 @@
                 </div>
                 <% if content[:kind] == "Video"%>
                     <%= render :partial=> 'video_modal', :locals => {
-                            :data_bs_target => data_bs_target, 
+                            :modal_id => modal_id, 
                             :embed_url => content[:embed_url],
                             :title => content[:title]
                         }
@@ -55,7 +55,7 @@
                 <% end %>
                 <% if content[:kind]=="Powerpoint" %>
                     <%= render :partial=> 'ppt_modal', :locals => {
-                        :data_bs_target => data_bs_target,
+                        :modal_id => modal_id,
                         :embed_url => content[:url],
                         :title => content[:title]
                         }
