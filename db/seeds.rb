@@ -150,11 +150,11 @@ end
 puts("Sections/Content seed is creating")
 Course.all.each do |course|
 	rand(1..3).times do
-		position_id = course.sections.size + 1
+		position = course.sections.size + 1
 		section = course.sections.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
-			position_id: position_id
+			position: position
 		)
 
 		# Content maker

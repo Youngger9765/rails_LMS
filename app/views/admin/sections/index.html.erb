@@ -2,16 +2,16 @@
 
 <h1>Admin Sections</h1>
 
-<table>
+<table class="table table-striped is-fullwidth has-shadowed">
   <thead>
     <tr>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="sortable-items">
     <% @admin_sections.each do |admin_section| %>
-      <tr>
+      <tr class="item" data-item="sections_<%=admin_section.id%>">
         <td><%= admin_section.name %></td>
         <td><%= link_to 'Show', admin_school_course_section_path(@admin_school, @admin_course,admin_section) %></td>
         <td><%= link_to 'Edit', edit_admin_school_course_section_path(@admin_school, @admin_course, admin_section) %></td>
@@ -24,3 +24,5 @@
 <br>
 
 <%= link_to 'New Admin Section', new_admin_school_course_section_path(@admin_school, @admin_course) %>
+
+<%=javascript_pack_tag 'sortable' %>
