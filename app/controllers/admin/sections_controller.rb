@@ -120,17 +120,20 @@ class Admin::SectionsController < ApplicationController
   def new_content
     content_kind = params[:content_kind]
     if content_kind == "Video"
-      video = Video.new(:url => params[:url])
-      video.save
-      @admin_section.contents.create(
-				:contentable => video
-			)
+      video = Video.create(:url => params[:url])
+      content_item = video
     elsif content_kind == "Powerpoint"
-      ppt = Powerpoint.new(:url => params[:url])
-      @admin_section.contents.create(
-				:contentable => ppt
+      ppt = Powerpoint.create(:url => params[:url])
+      content_item = ppt
+    elsif content_kind == "Exercise"
+      ex = Exercise.create(
+				name: params[:name],
+				cover_range: params[:cover_range],
+        is_random: true
 			)
+			content_item = ex
     end
+    @admin_section.contents.create(:contentable => content_item)
     
     respond_to do |format|
       format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }

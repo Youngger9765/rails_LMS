@@ -7,6 +7,8 @@
 <h3>
   <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_video_modal">New Video</div>
   <div class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new_ppt_modal">New PPT</div>
+  <div class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_exercise_modal">New Exercise</div>
+
 </h3>
 <table class="table table-striped">
     <thead>
@@ -78,6 +80,7 @@
 
 <%= render :partial=> 'new_video_form' %>
 <%= render :partial=> 'new_ppt_form' %>
+<%= render :partial=> 'new_exercise_form' %>
 
 
 <%=javascript_pack_tag 'sortable' %>

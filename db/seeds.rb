@@ -197,7 +197,6 @@ Course.all.each do |course|
 		end
 
 		puts("    Sections/Content Exercise seed is creating")
-		
 		cover_range_list = [
 			"a1","a2","a3"
 		]
