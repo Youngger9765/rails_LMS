@@ -125,6 +125,11 @@ class Admin::SectionsController < ApplicationController
       @admin_section.contents.create(
 				:contentable => video
 			)
+    elsif content_kind == "Powerpoint"
+      ppt = Powerpoint.new(:url => params[:url])
+      @admin_section.contents.create(
+				:contentable => ppt
+			)
     end
     
     respond_to do |format|

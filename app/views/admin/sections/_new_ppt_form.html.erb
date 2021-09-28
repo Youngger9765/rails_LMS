@@ -1,17 +1,15 @@
-<div class="modal fade" id="new_video_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="new_ppt_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          New Video
+          New PPT
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body responsive-google-slides">
-        <iframe src="" title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-        
+        <iframe src="" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+          webkitallowfullscreen="true"></iframe>
       </div>      
       <div class="modal-footer">
         <%= form_with url: new_content_admin_school_course_section_path(@admin_school, @admin_course, @admin_section) do |f| %>
@@ -19,10 +17,10 @@
             <div class="card-body">
               <div class="mb-3">
                 <%= f.label :url, { class: "form-label" }%>
-                  <%= f.text_field :url, { class: "form-control" } %>
+                <%= f.text_field :url, { class: "form-control" } %>
               </div>
-              <%= hidden_field_tag "content_kind" , "Video" %>
-                <%= f.submit 'Submit' , :class=> "btn btn-primary"%>
+              <%= hidden_field_tag "content_kind" , "Powerpoint" %>
+              <%= f.submit 'Submit' , :class=> "btn btn-primary"%>
             </div>
           </div>
         <% end %>

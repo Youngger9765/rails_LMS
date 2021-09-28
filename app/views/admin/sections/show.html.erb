@@ -5,9 +5,8 @@
 
 <h1><%= @admin_section.name%></h1>
 <h3>
-  <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_video_modal">
-  New Video
-</div>
+  <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_video_modal">New Video</div>
+  <div class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#new_ppt_modal">New PPT</div>
 </h3>
 <table class="table table-striped">
     <thead>
@@ -78,6 +77,7 @@
 </table>
 
 <%= render :partial=> 'new_video_form' %>
+<%= render :partial=> 'new_ppt_form' %>
 
 
 <%=javascript_pack_tag 'sortable' %>
