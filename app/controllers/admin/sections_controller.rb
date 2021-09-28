@@ -2,7 +2,7 @@ class Admin::SectionsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
   before_action :find_admin_course
-  before_action :set_admin_section, only: %i[ show edit update destroy edit_content delete_content sort]
+  before_action :set_admin_section, only: %i[ show edit update destroy edit_content new_content delete_content sort]
 
   # GET /admin/sections or /admin/sections.json
   def index
@@ -117,13 +117,27 @@ class Admin::SectionsController < ApplicationController
   #   @content_item_class_name = content.contentable.class.name
   # end
 
+  def new_content
+    content_kind = params[:content_kind]
+    if content_kind == "Video"
+      video = Video.new(:url => params[:url])
+      video.save
+      @admin_section.contents.create(
+				:contentable => video
+			)
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to admin_school_course_section_url(@admin_school,@admin_course, @admin_section), notice: "Content was successfully updated." }
+    end
+  end
+
   def edit_content
     content_kind = params[:content_kind]
     if content_kind == "Video"
       video = Video.find(params[:video_id])
       url = params[:url]
       video.url = url
-      video.get_video_info()
     elsif content_kind == "Powerpoint"
       ppt = Powerpoint.find(params[:ppt_id])
       url_input = params[:url]

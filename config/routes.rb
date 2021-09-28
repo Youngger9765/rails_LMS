@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :classrooms
       resources :courses do
         resources :sections do
+          post :new_content, on: :member
           post :edit_content, on: :member
           delete :delete_content, on: :member
           get :quiz_content, on: :member
