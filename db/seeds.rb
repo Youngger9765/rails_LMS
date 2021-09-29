@@ -95,7 +95,8 @@ Classroom.all.each do |classroom|
 	students.each do |student|
 		ClassroomStudentShip.create(
 			student_id: student.id,
-			classroom_id: classroom.id
+			classroom_id: classroom.id,
+      status: ["applied","registered"].sample
 		)
 	end
 
