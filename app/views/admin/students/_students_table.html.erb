@@ -1,0 +1,28 @@
+<table class="table table-striped is-fullwidth has-shadowed">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody class="sortable-items">
+    <% @admin_students.each do |admin_student| %>
+      <tr class="item" data-item="sections_<%=admin_student.id%>">
+        <td>
+          <%= admin_student.name %>
+        </td>
+        <td>
+          <%= link_to 'Show' , admin_school_classroom_student_path(@admin_school, @admin_classroom, admin_student) %>
+        </td>
+        <td>
+          <%= link_to 'Edit' , edit_admin_school_classroom_student_path(@admin_school, @admin_classroom, admin_student)%>
+        </td>
+        <td>
+          <%= link_to 'Destroy' , admin_school_classroom_student_path(@admin_school, @admin_classroom, admin_student),
+            method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+  
+</table>
