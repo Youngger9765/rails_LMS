@@ -216,7 +216,7 @@ class Admin::SectionsController < ApplicationController
       params.fetch(:section, {}).permit(
         :name,
         :description,
-        :position_id
+        :position
       )
     end
 
