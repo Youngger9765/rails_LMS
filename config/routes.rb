@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     end
     resources :courses do
       resources :teachers
-      resources :sections
+      resources :sections do
+        get :quiz_content, on: :member
+        post :summit_quiz, on: :member
+      end
     end
   end
 

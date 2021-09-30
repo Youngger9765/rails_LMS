@@ -38,41 +38,43 @@
                 <p class="card-text p-2">
                   duration: <%=content[:duration]%>
                 </p>
-              <% end%>
+                <% end%>
             </div>
           </div>
         </div>
       </div>
       <% if content[:kind]=="Video" %>
-        <%= render :partial=> 'video_modal', :locals => {
-          :modal_id => modal_id,
-          :embed_url => content[:embed_url],
-          :title => content[:title],
-          :video => content[:video],
-          :kind => content[:kind]
-          }
-        %>
-      <% end %>
-      <% if content[:kind]=="Powerpoint" %>
-        <%= render :partial=> 'ppt_modal', :locals => {
-          :modal_id => modal_id,
-          :embed_url => content[:url],
-          :title => content[:title],
-          :ppt => content[:ppt],
-          :kind => content[:kind]
-          }
-        %>
-      <% end %>
-      <% if content[:kind]=="Exercise" %>
-        <%= render :partial=> 'exercise_modal', :locals => {
-          :modal_id => modal_id,
-          :title => content[:title],
-          :ex => content[:ex],
-          :kind => content[:kind],
-          :quiz_init => content[:quiz_init],
-          }
-        %>
-      <% end %>
+          <%= render :partial=> 'video_modal', :locals => {
+            :modal_id => modal_id,
+            :embed_url => content[:embed_url],
+            :title => content[:title],
+            :video => content[:video],
+            :kind => content[:kind]
+            }
+          %>
+        <% end %>
+        <% if content[:kind]=="Powerpoint" %>
+          <%= render :partial=> 'ppt_modal', :locals => {
+            :modal_id => modal_id,
+            :embed_url => content[:url],
+            :title => content[:title],
+            :ppt => content[:ppt],
+            :kind => content[:kind]
+            }
+          %>
+        <% end %>
+        <% if content[:kind]=="Exercise" %>
+          <%= render :partial=> 'exercise_modal', :locals => {
+            :modal_id => modal_id,
+            :title => content[:title],
+            :ex => content[:ex],
+            :kind => content[:kind],
+            :quiz_init => content[:quiz_init],
+            }
+          %>
+        <% end %>
     <%end%>
   </div>
 </div>
+
+
