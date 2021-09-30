@@ -42,4 +42,16 @@ class Classroom < ApplicationRecord
       ship.save
     end
 
+    def set_course_is_added(course_id)
+      ship = ClassroomCourseShip.find_by(classroom_id: self.id, course_id: course_id)
+      ship.status = "added"
+      ship.save
+    end
+
+    def set_course_is_removed(course_id)
+      ship = ClassroomCourseShip.find_by(classroom_id: self.id, course_id: course_id)
+      ship.status = "removed"
+      ship.save
+    end
+
 end

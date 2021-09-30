@@ -1,7 +1,11 @@
 class Admin::ClassroomsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
-  before_action :set_admin_classroom, only: %i[ show edit update destroy add_student remove_student ]
+  before_action :set_admin_classroom, only: %i[ 
+    show edit update destroy 
+    add_student remove_student 
+    remove_course recover_course
+  ]
 
   # GET /admin/classrooms or /admin/classrooms.json
   def index
@@ -84,11 +88,21 @@ class Admin::ClassroomsController < ApplicationController
   end
 
   def remove_course
-    raise
+    @admin_course = Course.find(params[:course_id])
+    @admin_classroom.set_course_is_removed(@admin_course.id)
+    respond_to do |format|
+      format.html { redirect_to admin_school_classroom_url(@admin_school,@admin_classroom), notice: "Course is recovered!" }
+      format.json { head :no_content }
+    end
   end
 
   def recover_course
-    raise
+    @admin_course = Course.find(params[:course_id])
+    @admin_classroom.set_course_is_added(@admin_course.id)
+    respond_to do |format|
+      format.html { redirect_to admin_school_classroom_url(@admin_school,@admin_classroom), notice: "Course is recovered!" }
+      format.json { head :no_content }
+    end
   end
 
   private
