@@ -1,0 +1,54 @@
+<h5>已加入</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_courses.is_added.each do |admin_course| %>
+      <tr>
+        <td>
+          <%= link_to 'Remove' , remove_course_admin_school_classroom_path( @admin_school, @admin_classroom, :course_id=>
+            admin_course.id
+            ),
+            method: :post,
+            class:"btn btn-danger" %>
+        </td>
+        <td>
+          <%= admin_course.name %>
+        </td>
+        
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<br>
+<h5>已移除</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_courses.is_removed.each do |admin_course| %>
+      <tr>
+        <td>
+          <%= link_to 'Recover' , recover_course_admin_school_classroom_path( @admin_school, @admin_classroom, :course_id=>
+            admin_course.id
+            ),
+            method: :post,
+            class:"btn btn-warning" %>
+        </td>
+        <td>
+          <%= admin_course.name %>
+        </td>
+        
+      </tr>
+      <% end %>
+  </tbody>
+</table>

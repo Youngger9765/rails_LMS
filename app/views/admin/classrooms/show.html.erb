@@ -6,9 +6,12 @@
 <h1> Classroom Name: <%= @admin_classroom.name %>
 </h1>
 
+<h3>Courses</h3>
+<%= render 'courses_list' , :locals=> {:@admin_courses => @admin_courses} %>
+<br>
+
 <h3>Students</h3>
 <%= render 'students_list' , :locals => {:@admin_students => @admin_students} %>
 <br>
 
-<%= link_to 'New Admin Student' , new_admin_school_classroom_student_path(@admin_school, @admin_classroom) %>
 <%=javascript_pack_tag 'sortable' %>

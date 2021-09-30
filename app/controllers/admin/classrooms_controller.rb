@@ -15,6 +15,7 @@ class Admin::ClassroomsController < ApplicationController
   # GET /admin/classrooms/1 or /admin/classrooms/1.json
   def show
     @admin_students = @admin_classroom.students
+    @admin_courses = @admin_classroom.courses
   end
 
   # GET /admin/classrooms/new
@@ -80,6 +81,14 @@ class Admin::ClassroomsController < ApplicationController
       format.html { redirect_to admin_school_classroom_url(@admin_school,@admin_classroom), notice: "Student is registered!" }
       format.json { head :no_content }
     end
+  end
+
+  def remove_course
+    raise
+  end
+
+  def recover_course
+    raise
   end
 
   private

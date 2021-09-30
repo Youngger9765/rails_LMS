@@ -26,12 +26,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :schools do
+
       resources :classrooms do
         post :add_student, on: :member
         post :remove_student, on: :member
-
+        post :remove_course, on: :member
+        post :recover_course, on: :member
+        resources :courses
         resources :students
       end
+
       resources :courses do
         resources :sections do
           post :new_content, on: :member

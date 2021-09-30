@@ -108,7 +108,7 @@ end
 # Course
 puts("Course/Teacher ships seed is creating")
 School.all.each do |school|
-	rand(1..3).times do
+	rand(5..10).times do
 		course = school.courses.create(
 			name: Faker::Team.name,
 			description: Faker::Team.sport,
@@ -141,11 +141,12 @@ end
 puts("Classroom/Course seed is creating")
 Classroom.all.each do |classroom|
 	school = classroom.school
-	select_courses = school.courses.order("RAND()").limit([1,4].sample)
+	select_courses = school.courses.order("RAND()").limit([3,4].sample)
 	select_courses.all.each do |course|
 		ClassroomCourseShip.create(
 			:classroom_id => classroom.id,
-			:course_id => course.id
+			:course_id => course.id,
+      :status => ['added','removed'].sample
 		)
 	end
 end
