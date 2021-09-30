@@ -1,4 +1,9 @@
 <h1>School/Classroom</h1>
+<%if not @ship.present? or @ship.status == 'removed'%>
+  <%= link_to "加入" , apply_school_classroom_path(@school, @classroom), :method=>"POST", :class=>"btn btn-primary"%>
+<%else%>
+  <div class='btn btn-primary'><%=@status_wording%></div>
+<%end%>
 
 <p>name: <%= @classroom.name %> </p>
 <p>description: <%= @classroom.description %> </p>

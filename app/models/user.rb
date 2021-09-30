@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :staffs
   has_many :identities
   has_many :teachers
+  has_many :students do
+    def in_school(school_id)
+      where("students.school_id = ?", school_id)
+    end
+  end
 
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)

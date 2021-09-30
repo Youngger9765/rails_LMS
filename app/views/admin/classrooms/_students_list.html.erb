@@ -1,0 +1,132 @@
+<h5>申請中</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody class="sortable-items">
+    <% @admin_students.is_applied.each do |admin_student| %>
+      <tr class="item" data-item="sections_<%=admin_student.id%>">
+        <td>
+          <%= link_to "允許", 
+            add_student_admin_school_classroom_path(
+              @admin_school,
+              @admin_classroom, 
+              :student_id => admin_student.id
+            ), 
+            :class => "btn btn-primary",
+            :method => "POST"
+          %>
+        </td>
+        <td>
+          <%= admin_student.name %>
+        </td>
+        <td>
+          <%= admin_student.city %>
+        </td>
+        <td>
+          <%= admin_student.age %>
+        </td>
+        <td>
+          <%= admin_student.school_name %>
+        </td>
+        <td>
+          <%= admin_student.school_type %>
+        </td>
+        <td>
+          <%= admin_student.grade %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+
+</table>
+
+<h5>完成申請</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody class="sortable-items">
+    <% @admin_students.is_registered.each do |admin_student| %>
+      <tr class="item" data-item="sections_<%=admin_student.id%>">
+        <td>
+          <%= link_to "移除" , remove_student_admin_school_classroom_path( 
+              @admin_school, 
+              @admin_classroom, 
+              :student_id => admin_student.id
+            ),
+            :class => "btn btn-danger",
+            :method => "POST"
+            %>
+        </td>
+        <td>
+          <%= admin_student.name %>
+        </td>
+        <td>
+          <%= admin_student.city %>
+        </td>
+        <td>
+          <%= admin_student.age %>
+        </td>
+        <td>
+          <%= admin_student.school_name %>
+        </td>
+        <td>
+          <%= admin_student.school_type %>
+        </td>
+        <td>
+          <%= admin_student.grade %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+
+</table>
+
+<h5>移除</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody class="sortable-items">
+    <% @admin_students.is_removed.each do |admin_student| %>
+      <tr class="item" data-item="sections_<%=admin_student.id%>">
+        <td>
+          <%= link_to "復原" , add_student_admin_school_classroom_path( 
+              @admin_school, 
+              @admin_classroom, 
+              :student_id => admin_student.id
+            ),
+            :class => "btn btn-warning",
+            :method => "POST"
+            %>
+        </td>
+        <td>
+          <%= admin_student.name %>
+        </td>
+        <td>
+          <%= admin_student.city %>
+        </td>
+        <td>
+          <%= admin_student.age %>
+        </td>
+        <td>
+          <%= admin_student.school_name %>
+        </td>
+        <td>
+          <%= admin_student.school_type %>
+        </td>
+        <td>
+          <%= admin_student.grade %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+
+</table>

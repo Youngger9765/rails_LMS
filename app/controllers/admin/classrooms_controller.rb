@@ -1,7 +1,7 @@
 class Admin::ClassroomsController < ApplicationController
   layout 'admin'
   before_action :find_admin_school
-  before_action :set_admin_classroom, only: %i[ show edit update destroy ]
+  before_action :set_admin_classroom, only: %i[ show edit update destroy add_student remove_student ]
 
   # GET /admin/classrooms or /admin/classrooms.json
   def index
@@ -14,6 +14,7 @@ class Admin::ClassroomsController < ApplicationController
 
   # GET /admin/classrooms/1 or /admin/classrooms/1.json
   def show
+    @admin_students = @admin_classroom.students
   end
 
   # GET /admin/classrooms/new
@@ -59,6 +60,24 @@ class Admin::ClassroomsController < ApplicationController
     @admin_classroom.destroy
     respond_to do |format|
       format.html { redirect_to admin_school_classrooms_url(@admin_school), notice: "Classroom was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  def add_student
+    @admin_student = Student.find(params[:student_id])
+    @admin_classroom.set_student_is_registered(@admin_student.id)
+    respond_to do |format|
+      format.html { redirect_to admin_school_classroom_url(@admin_school,@admin_classroom), notice: "Student is registered!" }
+      format.json { head :no_content }
+    end
+  end
+
+  def remove_student
+    @admin_student = Student.find(params[:student_id])
+    @admin_classroom.set_student_is_removed(@admin_student.id)
+    respond_to do |format|
+      format.html { redirect_to admin_school_classroom_url(@admin_school,@admin_classroom), notice: "Student is registered!" }
       format.json { head :no_content }
     end
   end

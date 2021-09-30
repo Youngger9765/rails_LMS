@@ -8,13 +8,16 @@
 
 # User
 puts("User seed is creating")
+user = User.create(
+  email: "ww@ww.com",
+  password: "12345678"
+)
 50.times do
-	user = User.new(
+	user = User.create(
 		# name: Faker::Internet.user_name,
 		email: Faker::Internet.email,
 		password: "12345678"
 	)
-	user.save!
 end
 
 # School
@@ -96,7 +99,7 @@ Classroom.all.each do |classroom|
 		ClassroomStudentShip.create(
 			student_id: student.id,
 			classroom_id: classroom.id,
-      status: ["applied","registered"].sample
+      status: ["applied","registered","removed"].sample
 		)
 	end
 

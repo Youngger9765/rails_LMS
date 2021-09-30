@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Students</h1>
+
+<%= render 'admin/students/students_table' , :locals=> {:@admin_students => @admin_students}
+%>
+
+<br>
+
+<%= link_to 'New Admin Student' , new_admin_school_classroom_student_path(@admin_school, @admin_classroom) %>
+
+
+<%=javascript_pack_tag 'sortable' %>

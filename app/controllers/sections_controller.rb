@@ -97,6 +97,6 @@ class SectionsController < ApplicationController
     end
 
     def section_params
-        params.require(:section).permit(:name, :position_id)
+        params.require(:section).permit(:name, :position)
     end
 end
