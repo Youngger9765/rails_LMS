@@ -14,6 +14,8 @@ import "@fortawesome/fontawesome-free/js/all"
 import 'bootstrap/dist/js/bootstrap'
 import "trix"
 import "@rails/actiontext"
+import 'notion_api'
+
 
 
 const images = require.context('../images', true)

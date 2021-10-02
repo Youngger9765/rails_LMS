@@ -47,6 +47,11 @@ gem "font-awesome-rails"
 gem 'foreman', '~> 0.86.0'
 gem 'acts_as_list'
 
+gem 'notion'
+gem 'rest-client'
+gem 'json'
+gem 'httparty'
+
 gem 'will_paginate-bootstrap4'
 
 # Reduces boot times through caching; required in config/boot.rb

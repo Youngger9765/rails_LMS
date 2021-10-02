@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   root :to => 'homepage#index'
 
+  get '/okla' => 'homepage#index'
+
   namespace :admin do
     resources :schools do
 
