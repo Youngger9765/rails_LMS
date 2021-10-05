@@ -47,7 +47,6 @@ gem "font-awesome-rails"
 gem 'foreman', '~> 0.86.0'
 gem 'acts_as_list'
 
-gem 'notion'
 gem 'rest-client'
 gem 'json'
 gem 'httparty'
