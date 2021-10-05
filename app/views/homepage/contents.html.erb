@@ -1,0 +1,17 @@
+<h1>Contents</h1>
+
+<% @content_list.each do |content|%>
+  <li>
+    <%=content[:position]%>
+    <%=content[:type]%>
+    <% if content[:type] == 'video'%>
+      <a href="https://www.junyiacademy.org/v/<%=content[:content_id]%>"><%=content[:title]%></a>
+    <% elsif content[:type] == 'exercise'%>
+      <a href="https://www.junyiacademy.org/e/<%=content[:content_id]%>">
+        <%=content[:title]%>
+      </a>
+    <%end%>
+  </li>
+
+
+<%end%>

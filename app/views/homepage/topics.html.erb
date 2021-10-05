@@ -1,0 +1,13 @@
+<h1>Topics</h1>
+<% @results.each do |result|%>
+  <li>
+    <% type = result['type']%>
+    <% if type == 'child_page' or type == 'child_database'%>
+      <% if result[type]['title'].include? "[content]"%>
+        <%= link_to result[type]['title'], contents_path(:page_code=> result['id'])%>
+      <%else%>
+        <%= link_to result[type]['title'], topics_path(:page_code=> result['id'])%>
+      <%end%>
+    <%end%>
+  </li>
+<%end%>

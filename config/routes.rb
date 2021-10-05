@@ -24,7 +24,8 @@ Rails.application.routes.draw do
 
   root :to => 'homepage#index'
 
-  get '/okla' => 'homepage#index'
+  get '/topics' => 'homepage#topics'
+  get '/contents' => 'homepage#contents'
 
   namespace :admin do
     resources :schools do
