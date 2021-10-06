@@ -195,7 +195,6 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    mysql2 (0.5.3)
     nested_form (0.3.2)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
@@ -231,6 +230,7 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
@@ -414,11 +414,11 @@ DEPENDENCIES
   json
   kaminari
   listen (~> 3.3)
-  mysql2 (~> 0.5)
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
