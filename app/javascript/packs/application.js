@@ -24,7 +24,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "../stylesheets/application";
+import "../stylesheets/application.scss";
 document.addEventListener("turbolinks:load", function () {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
