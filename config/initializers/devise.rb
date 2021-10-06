@@ -316,7 +316,6 @@ Devise.setup do |config|
     image_aspect_ratio: 'square',
     image_size: 50,
     skip_jwt: true,
-    access_type: "offline",
   }
 
 
