@@ -34,7 +34,7 @@ end
 # School staff
 puts("School staff seed is creating")
 School.all.each do |school|
-	users = User.order("RAND()").limit(5) 
+	users = User.order("RANDOM()").limit(5) 
 	users.each do |user|
 		school.staffs.create( 
 			:name =>  Faker::Internet.user_name,
@@ -63,7 +63,7 @@ end
 # Student
 puts("Student seed is creating")
 School.all.each do |school|
-	users = User.order("RAND()").limit(rand(5..20)) 
+	users = User.order("RANDOM()").limit(rand(5..20)) 
 	users.each do |user|
 		school.students.create( 
 			:name =>  Faker::Internet.user_name,
