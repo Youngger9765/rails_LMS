@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: rails_LMS_production
   username: rails_LMS
   password: <%= ENV['RAILS_LMS_DATABASE_PASSWORD'] %>
